@@ -22,6 +22,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "imagemin": "^7.0.1",
     "imagemin-svgo": "^8.0.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
     "svgstore": "^3.0.0-2",
     "vue-template-compiler": "^2.6.11"
   }
