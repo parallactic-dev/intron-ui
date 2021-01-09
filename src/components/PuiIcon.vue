@@ -27,28 +27,24 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .pui-icon {
+  --s-size: #{$icon-size--m};
+
   display: inline-block;
+  width: var(--s-size);
+  height: var(--s-size);
 }
 
 .pui-icon--size-s {
-  width: 2rem;
-  height: 2rem;
-}
-
-.pui-icon--size-m {
-  width: 2.4rem;
-  height: 2.4rem;
+  --s-size: #{$icon-size--s};
 }
 
 .pui-icon--size-l {
-  width: 3.2rem;
-  height: 3.2rem;
+  --s-size: #{$icon-size--l};
 }
 
 .pui-icon--size-xl {
-  width: 4.8rem;
-  height: 4.8rem;
+  --s-size: #{$icon-size--xl};
 }
 </style>
