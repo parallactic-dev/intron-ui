@@ -41,6 +41,11 @@
     <pui-input type="text" label="An input with help" help-text="This is a help Text" />
     <br><br>
     <pui-input type="email" label="An input with error" help-text="This is a help Text" error-message="Please enter a vaild email address" v-bind:show-error="true" />
+    <br><br>
+
+    <pui-select label="Input Label" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" v-model="modelSelect" />
+    Model: {{modelSelect}}
+    <br>
   </div>
 </template>
 
@@ -48,13 +53,20 @@
 import PuiButton from './components/PuiButton.vue';
 import PuiIcon from './components/PuiIcon';
 import PuiInput from './components/PuiInput';
+import PuiSelect from './components/PuiSelect';
 
 export default {
   name: 'App',
   components: {
     PuiIcon,
     PuiButton,
-    PuiInput
+    PuiInput,
+    PuiSelect
+  },
+  data() {
+    return {
+      modelSelect: 'first'
+    }
   }
 }
 </script>
