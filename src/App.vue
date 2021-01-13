@@ -34,29 +34,36 @@
       <pui-button size="minor" icon="settings" type="primary" v-bind:iconOnly="true"></pui-button>
       <pui-button size="minor" icon="settings" type="text" v-bind:iconOnly="true"></pui-button>
     </div>
+
+    <br>
+    <pui-input type="text" label="Input Label" />
+    <br><br>
+    <pui-input type="text" label="An input with help" help-text="This is a help Text" />
+    <br><br>
+    <pui-input type="email" label="An input with error" help-text="This is a help Text" error-message="Please enter a vaild email address" v-bind:show-error="true" />
   </div>
 </template>
 
 <script>
 import PuiButton from './components/PuiButton.vue';
 import PuiIcon from './components/PuiIcon';
+import PuiInput from './components/PuiInput';
 
 export default {
   name: 'App',
   components: {
     PuiIcon,
-    PuiButton
+    PuiButton,
+    PuiInput
   }
 }
 </script>
 
 <style lang="scss">
+@import '~@/styles/main.scss';
+
 html {
   font-size: 10px;
-}
-
-body {
-  @include body;
 }
 
 #app {
