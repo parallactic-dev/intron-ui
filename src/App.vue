@@ -46,6 +46,13 @@
     <pui-select label="Input Label" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" v-model="modelSelect" />
     Model: {{modelSelect}}
     <br>
+    <br>
+    <br>
+    <pui-input type="text" label="Input Label" help-text="This is a help text" size="minor" v-model="inputModel" />
+    <br>{{inputModel}}
+    <br>
+    <br>
+    <pui-select label="Input Label" size="minor" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" />
   </div>
 </template>
 
@@ -65,7 +72,8 @@ export default {
   },
   data() {
     return {
-      modelSelect: 'first'
+      modelSelect: 'first',
+      inputModel: 'Model Value'
     }
   }
 }

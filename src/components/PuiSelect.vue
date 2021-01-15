@@ -1,10 +1,10 @@
 <template>
   <pui-form-control v-bind="$props">
-    <div class="pui-select" v-bind:class="{'pui-select--show-error': showError}">
+    <div class="pui-select" v-bind:class="[`pui-select--${size}`, {'pui-select--show-error': showError}]">
       <select class="pui-select__select" v-bind:value="value" v-on:input="onInput($event)">
         <option v-for="option in options" v-bind:key="option.value" v-bind:value="option.value">{{ option.label }}</option>
       </select>
-      <pui-icon class="pui-select__icon" name="chevron-down" />
+      <pui-icon class="pui-select__icon" name="chevron-down" size="s" />
     </div>
   </pui-form-control>
 </template>
@@ -44,11 +44,16 @@ export default {
       type: Boolean,
       default: false
     },
+    size: {
+      type: String,
+      default: 'major'
+    },
   },
   methods: {
     onInput(event) {
-      console.log(event)
-      this.$emit('input', event.target.value)
+      if (event && event.target) {
+        this.$emit('input', event.target.value)
+      }
     }
   }
 };
@@ -58,12 +63,20 @@ export default {
 .pui-select {
   --s-bezel-x: #{$input-bezel-x};
   --s-bezel-y: #{$input-bezel-y};
+  --s-bezel-icon-y: #{$input-bezel-y};
   --s-focus-width: #{$outline-width};
   --s-border: #{$border-width};
   --c-border: #{$input-border};
   --c-focus: #{$interaction-focus};
 
   position: relative;
+}
+
+.pui-select--minor {
+  --s-bezel-x: #{$input-bezel-x-minor};
+  --s-bezel-y: #{$input-bezel-y-minor};
+  --s-bezel-icon-y: #{$input-bezel-y * 0.5};
+  --s-focus-width: #{$outline-width};
 }
 
 .pui-select__select {
@@ -83,6 +96,10 @@ export default {
   display: none;
 }
 
+.pui-select--minor .pui-select__select {
+  @include small-text;
+}
+
 .pui-select--show-error {
   --c-border: #{$input-error};
 }
@@ -94,7 +111,7 @@ export default {
 
 .pui-select__icon {
   position: absolute;
-  top: var(--s-bezel-y);
+  top: var(--s-bezel-icon-y);
   right: var(--s-bezel-x);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <label class="pui-form-control" v-bind:class="{'pui-form-control--show-error': showError}">
+  <label class="pui-form-control" v-bind:class="[`pui-form-control--${size}`, {'pui-form-control--show-error': showError}]">
     <span class="pui-form-control__label" v-if="label" v-html="label"></span>
     <slot />
     <span class="pui-form-control__help-text" v-if="helpText" v-html="helpText"></span>
@@ -27,6 +27,10 @@ export default {
       type: Boolean,
       default: false
     },
+    size: {
+      type: String,
+      default: 'major'
+    },
   },
 };
 </script>
@@ -40,6 +44,10 @@ export default {
   min-width: 100%;
 }
 
+.pui-form-control--minor {
+  --s-label-stack: #{$label-stack-minor};
+}
+
 .pui-form-control--show-error {
   --c-text: #{$input-error};
 }
@@ -48,6 +56,12 @@ export default {
   display: block;
   margin-bottom: var(--s-label-stack);
   color: var(--c-text);
+}
+
+.pui-form-control--minor .pui-form-control__label,
+.pui-form-control--minor .pui-form-control__help-text,
+.pui-form-control--minor .pui-form-control__error-message {
+  @include small-text;
 }
 
 .pui-form-control__help-text,

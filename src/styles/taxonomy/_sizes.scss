@@ -5,10 +5,11 @@ $button-bezel-y-minor: 0.6rem;
 
 $input-bezel-x: 1.4rem;
 $input-bezel-y: 1.4rem;
-$input-bezel-x-minor: 1.6rem;
-$input-bezel-y-minor: 0.6rem;
+$input-bezel-x-minor: 0.8rem;
+$input-bezel-y-minor: 0.8rem;
 
 $label-stack: 0.6rem;
+$label-stack-minor: 0.4rem;
 
 $icon-button-bezel-x: 2.2rem;
 $icon-button-bezel-y: 1.4rem;
@@ -19,6 +20,11 @@ $icon-size--s: 2rem;
 $icon-size--m: 2.4rem;
 $icon-size--l: 3.2rem;
 $icon-size--xl: 4.8rem;
+
+$stack--ant: 3.2rem;
+$stack--beetle: 4.8rem;
+$stack--bumblebee: 6.4rem;
+$stack--dragonfly: 7.2rem;
 
 $border-width: 1px;
 $outline-width: 4px;

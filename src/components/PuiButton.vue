@@ -22,7 +22,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'large'
+      default: 'major'
     },
     icon: {
       type: String,

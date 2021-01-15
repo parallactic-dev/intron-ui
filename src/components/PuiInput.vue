@@ -1,7 +1,9 @@
 <template>
   <pui-form-control v-bind="$props">
-    <input v-bind:type="type" class="pui-input" v-bind:class="{'pui-input--show-error': showError}">
-    <pui-icon v-bind:name="icon" v-if="icon"></pui-icon>
+    <div class="pui-input" v-bind:class="[`pui-input--${size}`, {'pui-input--show-error': showError}]">
+      <input v-bind:type="type" class="pui-input__input" v-bind:value="value" v-on:input="onInput($event)">
+      <pui-icon v-bind:name="icon" v-if="icon"></pui-icon>
+    </div>
   </pui-form-control>
 </template>
 
@@ -24,6 +26,10 @@ export default {
       type: String,
       default: undefined
     },
+    value: {
+      type: String,
+      default: undefined
+    },
     helpText: {
       type: String,
       default: undefined
@@ -40,7 +46,18 @@ export default {
       type: Boolean,
       default: false
     },
+    size: {
+      type: String,
+      default: 'major'
+    },
   },
+  methods: {
+    onInput(event) {
+      if (event && event.target) {
+        this.$emit('input', event.target.value)
+      }
+    }
+  }
 };
 </script>
 
@@ -52,7 +69,15 @@ export default {
   --s-border: #{$border-width};
   --c-border: #{$input-border};
   --c-focus: #{$interaction-focus};
+}
 
+.pui-input--minor {
+  --s-bezel-x: #{$input-bezel-x-minor};
+  --s-bezel-y: #{$input-bezel-y-minor};
+  --s-focus-width: #{$outline-width};
+}
+
+.pui-input__input {
   @include input;
   display: block;
   width: 100%;
@@ -61,11 +86,15 @@ export default {
   border: var(--s-border) solid var(--c-border);
 }
 
+.pui-input--minor .pui-input__input {
+  @include small-text;
+}
+
 .pui-input--show-error {
   --c-border: #{$input-error};
 }
 
-.pui-input:focus {
+.pui-input__input:focus {
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;
 }
