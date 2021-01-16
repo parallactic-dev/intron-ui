@@ -1,0 +1,8 @@
+.pui-container {
+  margin: auto;
+  padding: 0 $container-bezel;
+
+  @include breakpoint('tablet') {
+    padding: 0 $container-bezel--laptop;
+  }
+}
