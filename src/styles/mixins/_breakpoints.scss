@@ -1,0 +1,22 @@
+/* stylelint-disable */
+$breakpoints: (
+  'tablet':   screen and ( min-width: 768px ),
+  'laptop':   screen and ( min-width: 1280px ),
+  'desktop':  screen and ( min-width: 1920px ),
+
+  'print':        print,
+  'screen':       screen,
+) !default;
+
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+  @else {
+    @media #{$breakpoint} {
+      @content;
+    }
+  }
+}
