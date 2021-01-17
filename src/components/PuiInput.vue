@@ -92,6 +92,7 @@ export default {
 
 .pui-input--show-error {
   --c-border: #{$input-error};
+  --c-focus: #{$interaction-focus-error};
 }
 
 .pui-input__input:focus {

@@ -102,6 +102,7 @@ export default {
 
 .pui-select--show-error {
   --c-border: #{$input-error};
+  --c-focus: #{$interaction-focus-error};
 }
 
 .pui-select__select:focus {

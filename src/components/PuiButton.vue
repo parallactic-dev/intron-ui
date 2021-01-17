@@ -49,10 +49,12 @@ export default {
   --s-icon: #{$icon-size--m};
   --s-icon-stack: #{$icon-inline-stack};
   --s-focus-width: #{$outline-width};
-  --c-border: #{$interaction-default};
-  --c-background: #{$interaction-default};
-  --c-background-hover: #{$interaction-inverted-hover};
-  --c-text: #{$interaction-inverted};
+
+  --c-border: #{$button-inverted-background};
+  --c-background: #{$button-inverted-background};
+  --c-background-hover: #{$button-inverted-hover-background};
+  --c-text: #{$button-inverted};
+  --c-text-hover: #{$button-inverted-hover};
   --c-focus: #{$interaction-focus};
 
   position: relative;
@@ -75,17 +77,19 @@ export default {
 }
 
 .pui-button--secondary {
-  --c-border: #{$interaction-default};
-  --c-background: #{$interaction-inverted};
-  --c-background-hover: #{$interaction-hover};
-  --c-text: #{$interaction-default};
+  --c-border: #{$button-default};
+  --c-background: #{$button-background};
+  --c-background-hover: #{$button-hover-background};
+  --c-text: #{$button-default};
+  --c-text-hover: #{$button-hover};
 }
 
 .pui-button--text {
-  --c-border: #{$interaction-inverted};
-  --c-background: #{$interaction-inverted};
-  --c-text: #{$interaction-default};
-  --c-background-hover: #{$interaction-hover};
+  --c-border: #{$button-inverted};
+  --c-background: #{$button-background};
+  --c-text: #{$button-default};
+  --c-text-hover: #{$button-hover};
+  --c-background-hover: #{$button-hover-background};
 }
 
 .pui-button--icon {
@@ -106,6 +110,7 @@ export default {
 
 .pui-button:hover {
   background-position: 50% 100%;
+  color: var(--c-text-hover);
   transition: 
     background-color 200ms linear,
     background-position 210ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -113,7 +118,7 @@ export default {
 }
 
 .pui-button.pui-button--text:hover {
-  --c-border: #{$interaction-hover};
+  --c-border: #{$button-hover-background};
 }
 
 .pui-button:focus {

@@ -1,8 +1,16 @@
-$interaction-default: #000000;
-$interaction-hover: #E7E9EB;
-$interaction-focus: #D2D6DA;
-$interaction-inverted: #FFFFFF;
-$interaction-inverted-hover: #404853;
+$button-default: #343749;
+$button-hover: #343749;
+$button-background: transparent;
+$button-hover-background: #BEFFE3;
+$button-inverted: #FFFFFF;
+$button-inverted-hover: #343749;
+$button-inverted-background: #343749;
+$button-inverted-hover-background: #BEFFE3;
 
-$input-border: #000000;
+$interaction-default: #343749;
+$interaction-hover: #343749;
+$interaction-focus: #BEFFE3;
+$interaction-focus-error: #F7DDDD;
+
+$input-border: #343749;
 $input-error: #DD1F47;
