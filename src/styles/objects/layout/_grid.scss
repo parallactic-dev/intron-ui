@@ -1,0 +1,71 @@
+.pui-grid {
+  --s-grid-gutter: #{$grid-gutter};
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--s-grid-gutter) * -0.5);
+  margin-right: calc(var(--s-grid-gutter) * -0.5);
+}
+
+.pui-grid--no-gap {
+  --s-grid-gutter: 0;
+}
+
+.pui-grid__cell {
+  flex: 0 0 auto;
+  width: auto;
+  box-sizing: border-box;
+  padding-right: calc(var(--s-grid-gutter) * 0.5);
+  padding-left: calc(var(--s-grid-gutter) * 0.5);
+}
+
+@for $cols from 1 through 12 {
+  .pui-grid__cell--#{$cols} {
+    flex: 0 0 #{$cols * 8.3333333%};
+    width: #{$cols * 8.3333333%};
+  }
+
+  .pui-grid__cell-push-left--#{$cols} {
+    margin-left: #{$cols * 8.3333333%};
+  }
+
+  .pui-grid__cell-push-right--#{$cols} {
+    margin-right: #{$cols * 8.3333333%};
+  }
+
+  .pui-grid__cell-pull-left--#{$cols} {
+    margin-left: #{$cols * -8.3333333%};
+  }
+
+  .pui-grid__cell-pull-right--#{$cols} {
+    margin-right: #{$cols * -8.3333333%};
+  }
+}
+
+
+@each $key, $breakpoint in $breakpoints {
+  @for $cols from 1 through 12 {
+    .pui-grid__cell--#{$cols}\@#{$key} {
+      @include breakpoint($key) {
+        flex: 0 0 #{$cols * 8.3333333%};
+        width: #{$cols * 8.3333333%};
+      }
+    }
+
+    .pui-grid__cell-push-left--#{$cols}\@#{$key} {
+      margin-left: #{$cols * 8.3333333%};
+    }
+
+    .pui-grid__cell-push-right--#{$cols}\@#{$key} {
+      margin-right: #{$cols * 8.3333333%};
+    }
+
+    .pui-grid__cell-pull-left--#{$cols}\@#{$key} {
+      margin-left: #{$cols * -8.3333333%};
+    }
+
+    .pui-grid__cell-pull-right--#{$cols}\@#{$key} {
+      margin-right: #{$cols * -8.3333333%};
+    }
+  }
+}

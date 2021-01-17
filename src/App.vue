@@ -41,32 +41,36 @@
           </div>
 
           <div class="pui-stack pui-stack--bumblebee pui-stack--dragonfly@laptop pui-no-stack@desktop">
-            <div class="pui-stack pui-stack--ant">
-              <pui-input type="text" label="Input Label" />
-            </div>
-            <div class="pui-stack pui-stack--ant">
-              <pui-input type="text" label="An input with help" help-text="This is a help Text" />
-            </div>
-            <div class="pui-stack pui-stack--ant">
-              <pui-input type="email" label="An input with error" help-text="This is a help Text" error-message="Please enter a vaild email address" v-bind:show-error="true" />
-            </div>
-            <div class="pui-stack pui-stack--ant">
-              <pui-select label="Input Label" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" v-model="modelSelect" />
-              Model: {{modelSelect}}
+            <div class="pui-grid">
+              <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
+                <div>
+                  <pui-input type="text" label="Input Label" />
+                </div>
+                <div class="pui-stack pui-stack--ant">
+                  <pui-input type="text" label="An input with help" help-text="This is a help Text" />
+                </div>
+                <div class="pui-stack pui-stack--ant">
+                  <pui-input type="email" label="An input with error" help-text="This is a help Text" error-message="Please enter a vaild email address" v-bind:show-error="true" />
+                </div>
+                <div class="pui-stack pui-stack--ant">
+                  <pui-select label="Input Label" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" v-model="modelSelect" />
+                  Model: {{modelSelect}}
+                </div>
+              </div>
+              <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
+                <pui-input type="text" label="Input Label" help-text="This is a help text" size="minor" />
+                <div class="pui-stack pui-stack--ant">
+                  <pui-select label="Input Label" size="minor" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" />
+                </div>
+              </div>
+              <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
+                <pui-input type="text" label="Input Label" help-text="This is a help text" size="minor" />
+                <div class="pui-stack pui-stack--ant">
+                  <pui-select label="Input Label" size="minor" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" />
+                </div>
+              </div>
             </div>
           </div>
-
-          <br>
-          <br>
-          <br>
-          <pui-input type="text" label="Input Label" help-text="This is a help text" size="minor" v-model="inputModel" />
-          <br>{{inputModel}}
-          <br>
-          <br>
-          <pui-select label="Input Label" size="minor" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" />
-
-
-
         </div>
       </main>
       <div class="pui-page__end">
