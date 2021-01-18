@@ -1,7 +1,7 @@
 <template>
   <pui-form-control v-bind="$props">
     <div class="pui-select" v-bind:class="[`pui-select--${size}`, {'pui-select--show-error': showError}]">
-      <select class="pui-select__select" v-bind:value="value" v-on:input="onInput($event)">
+      <select class="pui-select__select" v-bind:value="value" v-on="inputListeners">
         <option v-for="option in options" v-bind:key="option.value" v-bind:value="option.value">{{ option.label }}</option>
       </select>
       <pui-icon class="pui-select__icon" name="chevron-down" size="s" />
@@ -54,6 +54,18 @@ export default {
       if (event && event.target) {
         this.$emit('input', event.target.value)
       }
+    }
+  },
+  computed: {
+    inputListeners() {
+      return Object.assign({},
+        this.$listeners,
+        {
+          input: (event) => {
+            this.$emit('input', event.target.value);
+          }
+        }
+      )
     }
   }
 };

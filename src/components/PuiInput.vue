@@ -1,7 +1,7 @@
 <template>
   <pui-form-control v-bind="$props">
-    <div class="pui-input" v-bind:class="[`pui-input--${size}`, {'pui-input--show-error': showError}]">
-      <input v-bind:type="type" class="pui-input__input" v-bind:value="value" v-on:input="onInput($event)">
+    <div class="pui-input" v-bind:class="[`pui-input--type-${type}`, `pui-input--${size}`, {'pui-input--show-error': showError}]">
+      <input v-bind:type="type" class="pui-input__input" v-bind:value="value" v-on="inputListeners">
       <pui-icon v-bind:name="icon" v-if="icon"></pui-icon>
     </div>
   </pui-form-control>
@@ -57,6 +57,18 @@ export default {
         this.$emit('input', event.target.value)
       }
     }
+  },
+  computed: {
+    inputListeners() {
+      return Object.assign({},
+        this.$listeners,
+        {
+          input: (event) => {
+            this.$emit('input', event.target.value);
+          }
+        }
+      )
+    }
   }
 };
 </script>
@@ -67,6 +79,7 @@ export default {
   --s-bezel-y: #{$input-bezel-y};
   --s-focus-width: #{$outline-width};
   --s-border: #{$border-width};
+  --s-max-heigh: #{$input-max-height};
   --c-border: #{$input-border};
   --c-focus: #{$interaction-focus};
 }
@@ -75,6 +88,7 @@ export default {
   --s-bezel-x: #{$input-bezel-x-minor};
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-focus-width: #{$outline-width};
+  --s-max-heigh: #{$input-max-height-minor};
 }
 
 .pui-input__input {
@@ -84,6 +98,7 @@ export default {
   box-sizing: border-box;
   padding: calc(var(--s-bezel-y) - var(--s-border)) var(--s-bezel-x);
   border: var(--s-border) solid var(--c-border);
+  max-height: var(--s-max-heigh); // fix inconsistent input heights (date)
 }
 
 .pui-input--minor .pui-input__input {
@@ -96,6 +111,7 @@ export default {
 }
 
 .pui-input__input:focus {
+  position: relative;
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;
 }

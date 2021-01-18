@@ -41,21 +41,17 @@
           </div>
 
           <div class="pui-stack pui-stack--bumblebee pui-stack--dragonfly@laptop pui-no-stack@desktop">
+            <h2 class="pui-title">Form</h2>
             <div class="pui-grid">
               <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
-                <div>
-                  <pui-input type="text" label="Input Label" />
-                </div>
-                <div class="pui-stack pui-stack--ant">
-                  <pui-input type="text" label="An input with help" help-text="This is a help Text" />
-                </div>
-                <div class="pui-stack pui-stack--ant">
-                  <pui-input type="email" label="An input with error" help-text="This is a help Text" error-message="Please enter a vaild email address" v-bind:show-error="true" />
-                </div>
-                <div class="pui-stack pui-stack--ant">
-                  <pui-select label="Input Label" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" v-model="modelSelect" />
-                  Model: {{modelSelect}}
-                </div>
+                <form action="" class="pui-form">
+                    <pui-input type="text" label="Input Label" v-model="inputModel" v-on:change="onEvent" /><br>
+                    {{ inputModel }}
+                    <pui-input type="text" label="An input with help" help-text="This is a help Text" />
+                    <pui-input type="email" label="An input with error" help-text="This is a help Text" error-message="Please enter a vaild email address" v-bind:show-error="true" />
+                    <pui-select label="Input Label" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" v-model="modelSelect" v-on:blur="onEvent" />
+                    Model: {{modelSelect}}
+                </form>
               </div>
               <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
                 <pui-input type="text" label="Input Label" help-text="This is a help text" size="minor" />
@@ -69,6 +65,50 @@
                   <pui-select label="Input Label" size="minor" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" />
                 </div>
               </div>
+            </div>
+
+            <div class="pui-stack pui-stack--beetle">
+              <h3 class="pui-title pui-title--small">Inline Form</h3>
+              <form action="" class="pui-form pui-form--inline">
+                <pui-input type="text" label="Full Name" />
+                <pui-input type="text" label="E-Mail" />
+                <pui-input type="date" label="Date of Birth" />
+                <pui-button>Add Entry</pui-button>
+              </form>
+            </div>
+
+            <div class="pui-stack pui-stack--beetle">
+              <h3 class="pui-title pui-title--small">Inline Form no Gap</h3>
+              <form action="" class="pui-form pui-form--inline pui-form--no-gap">
+                <pui-input type="text" label="Full Name" />
+                <pui-input type="text" label="E-Mail" />
+                <pui-input type="date" label="Date of Birth" />
+                <pui-button icon="settings" v-bind:iconOnly="true"></pui-button>
+              </form>
+            </div>
+
+            <div class="pui-stack pui-stack--beetle">
+              <h3 class="pui-title pui-title--small">Checkbox (Array)</h3>
+              <fieldset class="pui-fieldset">
+                <pui-toggle value="vegi" v-model="checkboxModel">Vegetarian</pui-toggle><br>
+                <pui-toggle value="vegan" v-model="checkboxModel">Vegan</pui-toggle><br>
+                <pui-toggle value="lacto" v-model="checkboxModel">Lacto free</pui-toggle><br>
+              </fieldset>
+              {{ checkboxModel }}
+            </div>
+
+            <div class="pui-stack pui-stack--beetle">
+              <h3 class="pui-title pui-title--small">Checkbox (Boolean)</h3>
+              <pui-toggle v-model="checkboxModel2">I accept <a href="#">terms and conditions</a></pui-toggle><br>
+              {{ checkboxModel2 }}
+            </div>
+
+            <div class="pui-stack pui-stack--beetle">
+              <h3 class="pui-title pui-title--small">Radio</h3>
+              <pui-toggle type="radio" value="vegi" v-model="radioModel">Vegetarian</pui-toggle><br>
+              <pui-toggle type="radio" value="vegan" v-model="radioModel">Vegan</pui-toggle><br>
+              <pui-toggle type="radio" value="lacto" v-model="radioModel">Lacto free</pui-toggle><br>
+              {{ radioModel }}
             </div>
           </div>
         </div>
@@ -85,6 +125,7 @@ import PuiButton from './components/PuiButton.vue';
 import PuiIcon from './components/PuiIcon';
 import PuiInput from './components/PuiInput';
 import PuiSelect from './components/PuiSelect';
+import PuiToggle from './components/PuiToggle';
 
 export default {
   name: 'App',
@@ -92,12 +133,21 @@ export default {
     PuiIcon,
     PuiButton,
     PuiInput,
-    PuiSelect
+    PuiSelect,
+    PuiToggle
   },
   data() {
     return {
       modelSelect: 'first',
-      inputModel: 'Model Value'
+      inputModel: 'Model Value',
+      checkboxModel: ['vegi', 'vegan'],
+      checkboxModel2: false,
+      radioModel: undefined
+    }
+  },
+  methods: {
+    onEvent(event) {
+      console.log(event);
     }
   }
 }

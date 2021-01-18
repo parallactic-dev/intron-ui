@@ -1,0 +1,29 @@
+.pui-form:not(.pui-form--inline) .pui-form-control:not(:first-child) {
+  margin-top: $input-stack;
+}
+
+.pui-form--inline {
+  --s-gap: #{$input-gap};
+  display: flex;
+  align-items: flex-start;
+}
+
+.pui-form--inline.pui-form--no-gap {
+  --s-gap: #{$border-width * -1};
+}
+
+.pui-form.pui-form--inline > * {
+  flex: 1 1 auto;
+  min-width: auto;
+  margin-top: 0;
+  margin-left: var(--s-gap);
+}
+
+.pui-form.pui-form--inline > .pui-button {
+  flex: 0 0 auto;
+  margin-top: #{$text-size + $label-stack};
+}
+
+.pui-form.pui-form--inline > *:first-child {
+  margin-left: 0;
+}
