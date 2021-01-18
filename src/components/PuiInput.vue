@@ -1,7 +1,7 @@
 <template>
   <pui-form-control v-bind="$props">
     <div class="pui-input" v-bind:class="[`pui-input--type-${type}`, `pui-input--${size}`, {'pui-input--show-error': showError}]">
-      <input v-bind:type="type" class="pui-input__input" v-bind:value="value" v-on="inputListeners">
+      <input v-bind:type="type" class="pui-input__input" v-bind="$attrs" v-bind:value="value" v-on="inputListeners">
       <pui-icon v-bind:name="icon" v-if="icon"></pui-icon>
     </div>
   </pui-form-control>

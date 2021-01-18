@@ -1,6 +1,6 @@
 <template>
   <label class="pui-toggle" v-bind:class="[`pui-toggle--${type}`]">
-    <input class="pui-toggle__input" v-bind:type="type" v-bind:checked="checked" v-bind:value="value" v-on="inputListeners">
+    <input class="pui-toggle__input" v-bind:type="type" v-bind="$attrs" v-bind:checked="checked" v-bind:value="value" v-on="inputListeners">
     <span class="pui-toggle__control-wrap">
       <span class="pui-toggle__control">
         <span class="pui-toggle__box"></span>

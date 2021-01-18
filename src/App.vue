@@ -60,10 +60,7 @@
                 </div>
               </div>
               <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
-                <pui-input type="text" label="Input Label" help-text="This is a help text" size="minor" />
-                <div class="pui-stack pui-stack--ant">
-                  <pui-select label="Input Label" size="minor" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" />
-                </div>
+                <pui-textarea label="Textarea" placeholder="Write about your visit" />
               </div>
             </div>
 
@@ -124,6 +121,7 @@
 import PuiButton from './components/PuiButton.vue';
 import PuiIcon from './components/PuiIcon';
 import PuiInput from './components/PuiInput';
+import PuiTextarea from './components/PuiTextarea';
 import PuiSelect from './components/PuiSelect';
 import PuiToggle from './components/PuiToggle';
 
@@ -133,6 +131,7 @@ export default {
     PuiIcon,
     PuiButton,
     PuiInput,
+    PuiTextarea,
     PuiSelect,
     PuiToggle
   },
