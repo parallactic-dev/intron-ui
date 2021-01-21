@@ -28,6 +28,18 @@ $checkbox-checkmark-size: 2rem;
 $radio-checkmark-size: 0.8rem;
 $toggle-stack: 0.8rem;
 
+$dropdown-max-height: 30.4rem;
+$dropdown-bezel-x: 0;
+$dropdown-bezel-y: 0.8rem;
+$dropdown-item-bezel-x: 1.4rem;
+$dropdown-item-bezel-y: 1.2rem;
+
+$dropdown-max-height-minor: 30.4rem;
+$dropdown-bezel-x-minor: 0;
+$dropdown-bezel-y-minor: 0.4rem;
+$dropdown-item-bezel-x-minor: 1.4rem;
+$dropdown-item-bezel-y-minor: 0.8rem;
+
 
 $label-stack: 0.6rem;
 $label-stack-minor: 0.4rem;
@@ -41,6 +53,11 @@ $icon-size--s: 2rem;
 $icon-size--m: 2.4rem;
 $icon-size--l: 3.2rem;
 $icon-size--xl: 4.8rem;
+
+$spinner-size: 3.2rem;
+$spinner-stroke: 3.125px;
+$spinner-size-minor: 2rem;
+$spinner-stroke-minor: 5px;
 
 $stack--ant: 3.2rem;
 $stack--beetle: 4.8rem;

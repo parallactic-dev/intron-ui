@@ -9,6 +9,7 @@
     "icons": "node icons/generate-icon-sprite.js"
   },
   "dependencies": {
+    "@trevoreyre/autocomplete": "^2.2.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },

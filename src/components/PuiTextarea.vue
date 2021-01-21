@@ -1,7 +1,7 @@
 <template>
   <pui-form-control v-bind="$props">
     <div class="pui-textarea" v-bind:class="[`pui-textarea--${size}`, {'pui-textarea--show-error': showError}]">
-      <textarea v-bind:type="type" class="pui-textarea__input" v-bind="$attrs" v-bind:value="value" v-on="inputListeners"></textarea>
+      <textarea class="pui-textarea__textarea" v-bind="$attrs" v-bind:value="value" v-on="inputListeners"></textarea>
     </div>
   </pui-form-control>
 </template>
@@ -10,7 +10,7 @@
 import PuiFormControl from './PuiFormControl';
 
 export default {
-  name: 'PuiInput',
+  name: 'PuiTextarea',
   components: {
     PuiFormControl,
   },
@@ -79,7 +79,7 @@ export default {
   --s-focus-width: #{$outline-width};
 }
 
-.pui-textarea__input {
+.pui-textarea__textarea {
   @include input;
   display: block;
   width: 100%;
@@ -89,7 +89,7 @@ export default {
   min-height: var(--s-min-heigh);
 }
 
-.pui-textarea--minor .pui-textarea__input {
+.pui-textarea--minor .pui-textarea__textarea {
   @include small-text;
 }
 
@@ -98,7 +98,7 @@ export default {
   --c-focus: #{$interaction-focus-error};
 }
 
-.pui-textarea__input:focus {
+.pui-textarea__textarea:focus {
   position: relative;
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;

@@ -56,11 +56,18 @@
               <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
                 <pui-input type="text" label="Input Label" help-text="This is a help text" size="minor" />
                 <div class="pui-stack pui-stack--ant">
+                  <pui-autocomplete label="Country" size="minor" v-bind:search="search" />
+                </div>
+                <div class="pui-stack pui-stack--ant">
                   <pui-select label="Input Label" size="minor" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" />
                 </div>
               </div>
               <div class="pui-grid__cell pui-grid__cell--12 pui-grid__cell--4@laptop">
-                <pui-textarea label="Textarea" placeholder="Write about your visit" />
+                <pui-autocomplete label="Country" v-bind:search="search" v-model="autocompleteModel" />
+                {{ autocompleteModel }}
+                <div class="pui-stack pui-stack--beetle">
+                  <pui-textarea label="Textarea" placeholder="Write about your visit" />
+                </div>
               </div>
             </div>
 
@@ -108,6 +115,13 @@
               {{ radioModel }}
             </div>
           </div>
+
+          <div class="pui-stack pui-stack--dragonfly">
+            <h2 class="pui-title">Loading Spinner</h2>
+            <pui-spinner />
+          </div>
+
+          <div class="pui-stack pui-stack--dragonfly"></div>
         </div>
       </main>
       <div class="pui-page__end">
@@ -124,6 +138,8 @@ import PuiInput from './components/PuiInput';
 import PuiTextarea from './components/PuiTextarea';
 import PuiSelect from './components/PuiSelect';
 import PuiToggle from './components/PuiToggle';
+import PuiAutocomplete from './components/PuiAutocomplete';
+import PuiSpinner from './components/PuiSpinner';
 
 export default {
   name: 'App',
@@ -133,7 +149,9 @@ export default {
     PuiInput,
     PuiTextarea,
     PuiSelect,
-    PuiToggle
+    PuiToggle,
+    PuiAutocomplete,
+    PuiSpinner
   },
   data() {
     return {
@@ -141,12 +159,77 @@ export default {
       inputModel: 'Model Value',
       checkboxModel: ['vegi', 'vegan'],
       checkboxModel2: false,
-      radioModel: undefined
+      radioModel: undefined,
+      autocompleteModel: 'Switzerland'
     }
   },
   methods: {
     onEvent(event) {
       console.log(event);
+    },
+    search(input) {
+      if (input.length < 1) { return [] }
+      const countries = [
+        'Albania',
+        'Andorra',
+        'Armenia',
+        'Austria',
+        'Azerbaijan',
+        'Belarus',
+        'Belgium',
+        'Bosnia and Herzegovina',
+        'Bulgaria',
+        'Croatia',
+        'Cyprus',
+        'Czech Republic',
+        'Denmark',
+        'Estonia',
+        'Finland',
+        'France',
+        'Georgia',
+        'Germany',
+        'Greece',
+        'Hungary',
+        'Iceland',
+        'Ireland',
+        'Italy',
+        'Kazakhstan',
+        'Kosovo',
+        'Latvia',
+        'Liechtenstein',
+        'Lithuania',
+        'Luxembourg',
+        'Malta',
+        'Moldova',
+        'Monaco',
+        'Montenegro',
+        'Netherlands',
+        'North Macedonia',
+        'Norway',
+        'Poland',
+        'Portugal',
+        'Romania',
+        'Russia',
+        'San Marino',
+        'Serbia',
+        'Slovakia',
+        'Slovenia',
+        'Spain',
+        'Sweden',
+        'Switzerland',
+        'Turkey',
+        'Ukraine',
+        'United Kingdom',
+        'Vatican City',
+      ]
+      return new Promise(resolve => {
+        setTimeout(() => {
+          return resolve(countries.filter(country => {
+            return country.toLowerCase()
+              .startsWith(input.toLowerCase())
+          }))
+        }, 750)
+      })
     }
   }
 }
