@@ -1,3 +1,6 @@
+$text: #343749;
+$text-inverted: #FFFFFF;
+
 $button-default: #343749;
 $button-hover: #343749;
 $button-background: transparent;
@@ -9,11 +12,19 @@ $button-inverted-hover-background: #BEFFE3;
 
 $interaction-default: #343749;
 $interaction-hover: #343749;
+$interaction-hover-background: #BEFFE3;
 $interaction-focus: #BEFFE3;
 $interaction-focus-error: #F7DDDD;
 
 $input-border: #343749;
-$input-background: #FFFFFF;
+$input-background: transparent;
 $input-error: #DD1F47;
+
+$dropdown-background: #FFFFFF;
+
+
+$table-border: #343749;
+$table-background: transparent;
+$table-background-hover: #E8FFF5;
 
 $spinner: #343749;

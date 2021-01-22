@@ -79,6 +79,7 @@ export default {
   --s-focus-width: #{$outline-width};
   --s-border: #{$border-width};
   --c-border: #{$input-border};
+  --c-background: #{$input-background};
   --c-focus: #{$interaction-focus};
 
   position: relative;
@@ -98,6 +99,7 @@ export default {
   box-sizing: border-box;
   padding: calc(var(--s-bezel-y) - var(--s-border)) var(--s-bezel-x);
   border: var(--s-border) solid var(--c-border);
+  background-color: var(--c-background);
   // remove select arrow
   -webkit-appearance: none;
   -moz-appearance: none;      

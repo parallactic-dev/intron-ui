@@ -65,7 +65,6 @@ export default {
     var(--c-background-hover) 50%
   );
   background-size: 100% 200%;
-
   border: $border-width solid var(--c-border);
   color: var(--c-text);
   font-family: inherit;

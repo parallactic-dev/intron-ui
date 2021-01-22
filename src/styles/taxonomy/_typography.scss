@@ -15,7 +15,20 @@
   line-height: 1.25;
 }
 
+@mixin table {
+  line-height: 1.2;
+}
+
 @mixin small-text {
   font-size: 1.4rem;
   line-height: 1.2;
+}
+
+@mixin small-title {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: left;
+  letter-spacing: 0.08rem;
 }

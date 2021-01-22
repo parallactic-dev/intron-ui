@@ -121,7 +121,17 @@
             <pui-spinner />
           </div>
 
-          <div class="pui-stack pui-stack--dragonfly"></div>
+          <div class="pui-stack pui-stack--dragonfly">
+            <pui-table 
+              v-bind:columns="[
+                { title: 'Name', key: 'name', sortable: true, gridCells: 4, width: '25rem' },
+                { title: 'Phone', key: 'phone', sortable: true },
+                { title: 'State', key: 'state', sortable: false, renderer: 'DurationFormatter', width: '20rem' },
+              ]"
+              v-bind:data="tableData"
+              v-on:rowSelect="onRowSelect">
+            </pui-table>
+          </div>
         </div>
       </main>
       <div class="pui-page__end">
@@ -140,6 +150,7 @@ import PuiSelect from './components/PuiSelect';
 import PuiToggle from './components/PuiToggle';
 import PuiAutocomplete from './components/PuiAutocomplete';
 import PuiSpinner from './components/PuiSpinner';
+import PuiTable from './components/PuiTable';
 
 export default {
   name: 'App',
@@ -151,7 +162,8 @@ export default {
     PuiSelect,
     PuiToggle,
     PuiAutocomplete,
-    PuiSpinner
+    PuiSpinner,
+    PuiTable
   },
   data() {
     return {
@@ -160,7 +172,12 @@ export default {
       checkboxModel: ['vegi', 'vegan'],
       checkboxModel2: false,
       radioModel: undefined,
-      autocompleteModel: 'Switzerland'
+      autocompleteModel: 'Switzerland',
+      tableData: [
+        {name: 'Hans Wugger', phone: '079 569 31 48', state: 'open'},
+        {name: 'James Morris', phone: '044 515 20 55', state: 'billed'},
+        {name: 'Hannah Tunnel', phone: '–', state: 'open'}
+      ]
     }
   },
   methods: {

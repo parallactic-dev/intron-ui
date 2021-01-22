@@ -281,7 +281,7 @@ export default {
   --s-result-bezel-x: #{$dropdown-item-bezel-x};
   --s-result-list-max-height: #{$dropdown-max-height};
   --c-border: #{$input-border};
-  --c-background: #{$input-background};
+  --c-background: #{$dropdown-background};
   --c-focus: #{$interaction-focus};
 
   position: relative;
