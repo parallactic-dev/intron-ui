@@ -1,6 +1,6 @@
 <template>
 <div>
-<table class="pui-table">
+<table class="pui-table" v-bind:class="{'pui-table--hover': tableOptions.hoverEffect}">
   <thead class="pui-table__thead" v-if="tableOptions.showHeader">
     <th 
       class="pui-table__th"  
@@ -66,6 +66,7 @@ export default {
       orderBy: this.columns[0].key || null,
       orderDirection: 'asc',
       showHeader: true,
+      hoverEffect: true
     };
     this.tableOptions = Object.assign({}, defaultOptions, this.options);
   },
@@ -110,9 +111,13 @@ export default {
   --c-text: #{$text};
   --c-text-hover: #{$interaction-hover};
   --c-background: #{$table-background};
-  --c-background-hover: #{$table-background-hover};
+  --c-background-hover: #{$table-background};
 
   width: 100%;
+}
+
+.pui-table--hover {
+  --c-background-hover: #{$table-background-hover};
 }
 
 .pui-table__th {
