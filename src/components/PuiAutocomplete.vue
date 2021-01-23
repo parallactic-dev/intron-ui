@@ -125,14 +125,6 @@ export default {
       resetPosition: true,
     }
   },
-
-  // methods: {
-  //   onInput(event) {
-  //     if (event && event.target) {
-  //       this.$emit('input', event.target.value)
-  //     }
-  //   }
-  // },
   computed: {
     rootProps() {
       return {
@@ -198,17 +190,6 @@ export default {
         ...(this.selectedIndex === index ? { 'aria-selected': 'true' } : {}),
       }))
     },
-
-    // inputListeners() {
-    //   return Object.assign({},
-    //     this.$listeners,
-    //     {
-    //       input: (event) => {
-    //         this.$emit('input', event.target.value);
-    //       }
-    //     }
-    //   )
-    // }
   },
 
   mounted() {
@@ -274,7 +255,6 @@ export default {
   --s-bezel-y: #{$input-bezel-y};
   --s-focus-width: #{$outline-width};
   --s-border: #{$border-width};
-  --s-max-heigh: #{$input-max-height};
   --s-result-list-bezel-y: #{$dropdown-bezel-y};
   --s-result-list-bezel-x: #{$dropdown-bezel-x};
   --s-result-bezel-y: #{$dropdown-item-bezel-y};
@@ -291,7 +271,6 @@ export default {
   --s-bezel-x: #{$input-bezel-x-minor};
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-focus-width: #{$outline-width};
-  --s-max-heigh: #{$input-max-height-minor};
   --s-result-list-bezel-y: #{$dropdown-bezel-y-minor};
   --s-result-list-bezel-x: #{$dropdown-bezel-x-minor};
   --s-result-bezel-y: #{$dropdown-item-bezel-y-minor};
@@ -307,7 +286,6 @@ export default {
   box-sizing: border-box;
   padding: calc(var(--s-bezel-y) - var(--s-border)) var(--s-bezel-x);
   border: var(--s-border) solid var(--c-border);
-  max-height: var(--s-max-heigh); // fix inconsistent input heights (date)
 }
 
 .pui-autocomplete--minor .pui-autocomplete__input {
@@ -371,14 +349,5 @@ export default {
 .pui-autocomplete__result:hover,
 .pui-autocomplete__result[aria-selected="true"] {
   background-color: var(--c-focus);
-}
-
-@keyframes rotate {
-  from {
-    transform: translateY(-50%) rotate(0deg);
-  }
-  to {
-    transform: translateY(-50%) rotate(359deg);
-  }
 }
 </style>
