@@ -1,10 +1,15 @@
 {
-  "name": "plui",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@parallactic/insecta",
+  "version": "0.0.9",
+  "private": false,
+  "license": "MIT",
+  "main": "dist/insecta.common.js",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name insecta src/Library.vue",
     "lint": "vue-cli-service lint",
     "icons": "node icons/generate-icon-sprite.js"
   },
@@ -25,6 +30,7 @@
     "imagemin-svgo": "^8.0.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
+    "svg-url-loader": "^7.1.1",
     "svgstore": "^3.0.0-2",
     "vue-template-compiler": "^2.6.11"
   }

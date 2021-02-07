@@ -1,4 +1,4 @@
-.pui-stack {
+.in-stack {
   &--ant {
     margin-top: $stack--ant;
 
@@ -88,23 +88,23 @@
   }
 }
 
-.pui-no-stack {
+.in-no-stack {
   margin-top: 0;
 }
 
-.pui-no-stack\@desktop {
+.in-no-stack\@desktop {
   @include breakpoint('desktop') {
     margin-top: 0;
   }
 }
 
-.pui-no-stack\@laptop {
+.in-no-stack\@laptop {
   @include breakpoint('laptop') {
     margin-top: 0;
   }
 }
 
-.pui-no-stack\@tablet {
+.in-no-stack\@tablet {
   @include breakpoint('tablet') {
     margin-top: 0;
   }

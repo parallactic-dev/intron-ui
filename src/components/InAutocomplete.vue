@@ -1,32 +1,32 @@
 <template>
-  <pui-form-control v-bind="$props">
+  <in-form-control v-bind="$props">
     <div ref="root">
-      <div v-bind="rootProps" class="pui-autocomplete" v-bind:class="[`pui-autocomplete--${size}`, {'pui-autocomplete--show-error': showError}]">
+      <div v-bind="rootProps" class="in-autocomplete" v-bind:class="[`in-autocomplete--${size}`, {'in-autocomplete--show-error': showError}]">
         <input
           ref="input"
-          class="pui-autocomplete__input" 
+          class="in-autocomplete__input" 
           v-bind="inputProps"
           v-on:input="handleInput"
           v-on:keydown="core.handleKeyDown"
           v-on:focus="core.handleFocus"
           v-on:blur="core.handleBlur"
           v-on="$listeners">
-        <pui-icon v-bind:name="icon" v-if="icon" />
-        <pui-spinner class="pui-autocomplete__loading-spinner" v-if="loading" v-bind:size="size" />
+        <in-icon v-bind:name="icon" v-if="icon" />
+        <in-spinner class="in-autocomplete__loading-spinner" v-if="loading" v-bind:size="size" />
         <ul
           ref="resultList"
-          class="pui-autocomplete__result-list"
+          class="in-autocomplete__result-list"
           v-bind="resultListProps"
           v-on="resultListListeners">
           <template v-for="(result, index) in results">
-            <li class="pui-autocomplete__result" v-bind:key="resultProps[index].id" v-bind="resultProps[index]">
+            <li class="in-autocomplete__result" v-bind:key="resultProps[index].id" v-bind="resultProps[index]">
               {{ getResultValue(result) }}
             </li>
           </template>
         </ul>
       </div>
     </div>
-  </pui-form-control>
+  </in-form-control>
 </template>
 
 <script>
@@ -35,21 +35,21 @@ import uniqueId from '@trevoreyre/autocomplete/util/uniqueId';
 import getRelativePosition from '@trevoreyre/autocomplete/util/getRelativePosition';
 import debounce from '@trevoreyre/autocomplete/util/debounce';
 
-import PuiFormControl from './PuiFormControl';
-import PuiIcon from './PuiIcon';
-import PuiSpinner from './PuiSpinner';
+import InFormControl from './InFormControl';
+import InIcon from './InIcon';
+import InSpinner from './InSpinner';
 
 export default {
-  name: 'PuiAutocomplete',
+  name: 'InAutocomplete',
   inheritAttrs: false,
   model: {
     prop: 'modelValue',
     event: 'update'
   },
   components: {
-    PuiFormControl,
-    PuiIcon,
-    PuiSpinner
+    InFormControl,
+    InIcon,
+    InSpinner
   },
   props: {
     search: {
@@ -116,7 +116,7 @@ export default {
     return {
       core,
       value: this.modelValue,
-      resultListId: uniqueId('pui-autocomplete-result-list-'),
+      resultListId: uniqueId('in-autocomplete-result-list-'),
       results: [],
       selectedIndex: -1,
       expanded: false,
@@ -184,7 +184,7 @@ export default {
     },
     resultProps() {
       return this.results.map((result, index) => ({
-        id: `pui-autocomplete-result-${index}`,
+        id: `in-autocomplete-result-${index}`,
         'data-result-index': index,
         role: 'option',
         ...(this.selectedIndex === index ? { 'aria-selected': 'true' } : {}),
@@ -250,7 +250,7 @@ export default {
 </script>
 
 <style lang="scss">
-.pui-autocomplete {
+.in-autocomplete {
   --s-bezel-x: #{$input-bezel-x};
   --s-bezel-y: #{$input-bezel-y};
   --s-focus-width: #{$outline-width};
@@ -267,7 +267,7 @@ export default {
   position: relative;
 }
 
-.pui-autocomplete--minor {
+.in-autocomplete--minor {
   --s-bezel-x: #{$input-bezel-x-minor};
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-focus-width: #{$outline-width};
@@ -278,7 +278,7 @@ export default {
   --s-result-list-max-height: #{$dropdown-max-height-minor};
 }
 
-.pui-autocomplete__input {
+.in-autocomplete__input {
   @include input;
   position: relative;
   display: block;
@@ -288,31 +288,31 @@ export default {
   border: var(--s-border) solid var(--c-border);
 }
 
-.pui-autocomplete--minor .pui-autocomplete__input {
+.in-autocomplete--minor .in-autocomplete__input {
   @include small-text;
 }
 
-.pui-autocomplete--show-error {
+.in-autocomplete--show-error {
   --c-border: #{$input-error};
   --c-focus: #{$interaction-focus-error};
 }
 
-.pui-autocomplete__input:focus {
+.in-autocomplete__input:focus {
   position: relative;
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;
 }
 
-.pui-autocomplete[data-position="below"] .pui-autocomplete__input[aria-expanded="true"] {
+.in-autocomplete[data-position="below"] .in-autocomplete__input[aria-expanded="true"] {
   border-bottom-color: transparent;
 }
 
-.pui-autocomplete[data-position="above"] .pui-autocomplete__input[aria-expanded="true"] {
+.in-autocomplete[data-position="above"] .in-autocomplete__input[aria-expanded="true"] {
   border-top-color: transparent;
   z-index: 2;
 }
 
-.pui-autocomplete__loading-spinner {
+.in-autocomplete__loading-spinner {
   position: absolute;
   right: var(--s-bezel-x);
   top: 50%;
@@ -320,7 +320,7 @@ export default {
   z-index: 1;
 }
 
-.pui-autocomplete__result-list {
+.in-autocomplete__result-list {
   margin: 0;
   padding: var(--s-result-list-bezel-y) var(--s-result-list-bezel-x);
   border: var(--s-border) solid var(--c-border);
@@ -331,23 +331,23 @@ export default {
   list-style: none;
 }
 
-.pui-autocomplete[data-position="below"] .pui-autocomplete__result-list {
+.in-autocomplete[data-position="below"] .in-autocomplete__result-list {
   margin-top: calc(var(--s-border) * -1);
   padding-bottom: var(--s-result-list-bezel-y);
 }
 
-.pui-autocomplete[data-position="above"] .pui-autocomplete__result-list {
+.in-autocomplete[data-position="above"] .in-autocomplete__result-list {
   margin-bottom: calc(var(--s-border) * -1);
   padding-top: var(--s-result-list-bezel-y);
 }
 
-.pui-autocomplete__result {
+.in-autocomplete__result {
   cursor: default;
   padding: var(--s-result-bezel-y) var(--s-result-bezel-x);
 }
 
-.pui-autocomplete__result:hover,
-.pui-autocomplete__result[aria-selected="true"] {
+.in-autocomplete__result:hover,
+.in-autocomplete__result[aria-selected="true"] {
   background-color: var(--c-focus);
 }
 </style>

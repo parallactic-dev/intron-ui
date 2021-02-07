@@ -1,18 +1,18 @@
-.pui-page {
+.in-page {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   min-height: 100vh;
 }
 
-.pui-page__start {
+.in-page__start {
   flex: 0 0 auto;
 }
 
-.pui-page__main {
+.in-page__main {
   flex: 1 0 auto;
 }
 
-.pui-page__end {
+.in-page__end {
   flex: 0 0 auto;
 }

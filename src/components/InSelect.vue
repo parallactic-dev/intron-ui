@@ -1,23 +1,23 @@
 <template>
-  <pui-form-control v-bind="$props">
-    <div class="pui-select" v-bind:class="[`pui-select--${size}`, {'pui-select--show-error': showError}]">
-      <select class="pui-select__select" v-bind="$attrs" v-bind:value="value" v-on="inputListeners">
+  <in-form-control v-bind="$props">
+    <div class="in-select" v-bind:class="[`in-select--${size}`, {'in-select--show-error': showError}]">
+      <select class="in-select__select" v-bind="$attrs" v-bind:value="value" v-on="inputListeners">
         <option v-for="option in options" v-bind:key="option.value" v-bind:value="option.value">{{ option.label }}</option>
       </select>
-      <pui-icon class="pui-select__icon" name="chevron-down" size="s" />
+      <in-icon class="in-select__icon" name="chevron-down" size="s" />
     </div>
-  </pui-form-control>
+  </in-form-control>
 </template>
 
 <script>
-import PuiFormControl from './PuiFormControl';
-import PuiIcon from './PuiIcon';
+import InFormControl from './InFormControl';
+import InIcon from './InIcon';
 
 export default {
-  name: 'PuiSelect',
+  name: 'InSelect',
   components: {
-    PuiFormControl,
-    PuiIcon,
+    InFormControl,
+    InIcon,
   },
   props: {
     label: {
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss">
-.pui-select {
+.in-select {
   --s-bezel-x: #{$input-bezel-x};
   --s-bezel-y: #{$input-bezel-y};
   --s-bezel-icon-y: #{$input-bezel-y};
@@ -85,14 +85,14 @@ export default {
   position: relative;
 }
 
-.pui-select--minor {
+.in-select--minor {
   --s-bezel-x: #{$input-bezel-x-minor};
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-bezel-icon-y: #{$input-bezel-y * 0.5};
   --s-focus-width: #{$outline-width};
 }
 
-.pui-select__select {
+.in-select__select {
   @include input;
   display: block;
   width: 100%;
@@ -106,25 +106,25 @@ export default {
   appearance: none;
 }
 
-.pui-select__select::-ms-expand {
+.in-select__select::-ms-expand {
   display: none;
 }
 
-.pui-select--minor .pui-select__select {
+.in-select--minor .in-select__select {
   @include small-text;
 }
 
-.pui-select--show-error {
+.in-select--show-error {
   --c-border: #{$input-error};
   --c-focus: #{$interaction-focus-error};
 }
 
-.pui-select__select:focus {
+.in-select__select:focus {
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;
 }
 
-.pui-select__icon {
+.in-select__icon {
   position: absolute;
   top: var(--s-bezel-icon-y);
   right: var(--s-bezel-x);

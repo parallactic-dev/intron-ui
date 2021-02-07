@@ -1,18 +1,18 @@
 <template>
-  <pui-form-control v-bind="$props">
-    <div class="pui-textarea" v-bind:class="[`pui-textarea--${size}`, {'pui-textarea--show-error': showError}]">
-      <textarea class="pui-textarea__textarea" v-bind="$attrs" v-bind:value="value" v-on="inputListeners"></textarea>
+  <in-form-control v-bind="$props">
+    <div class="in-textarea" v-bind:class="[`in-textarea--${size}`, {'in-textarea--show-error': showError}]">
+      <textarea class="in-textarea__textarea" v-bind="$attrs" v-bind:value="value" v-on="inputListeners"></textarea>
     </div>
-  </pui-form-control>
+  </in-form-control>
 </template>
 
 <script>
-import PuiFormControl from './PuiFormControl';
+import InFormControl from './InFormControl';
 
 export default {
-  name: 'PuiTextarea',
+  name: 'InTextarea',
   components: {
-    PuiFormControl,
+    InFormControl,
   },
   props: {
     label: {
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss">
-.pui-textarea {
+.in-textarea {
   --s-bezel-x: #{$input-bezel-x};
   --s-bezel-y: #{$input-bezel-y};
   --s-focus-width: #{$outline-width};
@@ -73,13 +73,13 @@ export default {
   --c-focus: #{$interaction-focus};
 }
 
-.pui-textarea--minor {
+.in-textarea--minor {
   --s-bezel-x: #{$input-bezel-x-minor};
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-focus-width: #{$outline-width};
 }
 
-.pui-textarea__textarea {
+.in-textarea__textarea {
   @include input;
   display: block;
   width: 100%;
@@ -89,16 +89,16 @@ export default {
   min-height: var(--s-min-heigh);
 }
 
-.pui-textarea--minor .pui-textarea__textarea {
+.in-textarea--minor .in-textarea__textarea {
   @include small-text;
 }
 
-.pui-textarea--show-error {
+.in-textarea--show-error {
   --c-border: #{$input-error};
   --c-focus: #{$interaction-focus-error};
 }
 
-.pui-textarea__textarea:focus {
+.in-textarea__textarea:focus {
   position: relative;
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;

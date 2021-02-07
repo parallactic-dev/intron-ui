@@ -1,14 +1,14 @@
 <template>
-  <i class="pui-icon" v-bind:class="[`pui-icon--size-${size}`]">
+  <i class="in-icon" v-bind:class="[`in-icon--size-${size}`]">
     <svg viewBox="0 0 48 48">
-      <use v-bind:xlink:href="iconHref"></use>
+      <use v-bind:xlink:href="`${iconHref}#${this.name}`"></use>
     </svg>
   </i>
 </template>
 
 <script>
 export default {
-  name: 'PuiIcon',
+  name: 'InIcon',
   props: {
     name: {
       type: String,
@@ -21,14 +21,14 @@ export default {
   },
   computed: {
     iconHref() {
-      return `/iconsprite.svg#${this.name}`
+      return require('@/assets/iconsprite.svg');
     },
   }
 };
 </script>
 
 <style lang="scss">
-.pui-icon {
+.in-icon {
   --s-size: #{$icon-size--m};
 
   display: inline-block;
@@ -36,15 +36,15 @@ export default {
   height: var(--s-size);
 }
 
-.pui-icon--size-s {
+.in-icon--size-s {
   --s-size: #{$icon-size--s};
 }
 
-.pui-icon--size-l {
+.in-icon--size-l {
   --s-size: #{$icon-size--l};
 }
 
-.pui-icon--size-xl {
+.in-icon--size-xl {
   --s-size: #{$icon-size--xl};
 }
 </style>

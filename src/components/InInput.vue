@@ -1,21 +1,21 @@
 <template>
-  <pui-form-control v-bind="$props">
-    <div class="pui-input" v-bind:class="[`pui-input--type-${type}`, `pui-input--${size}`, {'pui-input--show-error': showError}]">
-      <input v-bind:type="type" class="pui-input__input" v-bind="$attrs" v-bind:value="value" v-on="inputListeners">
-      <pui-icon v-bind:name="icon" v-if="icon"></pui-icon>
+  <in-form-control v-bind="$props">
+    <div class="in-input" v-bind:class="[`in-input--type-${type}`, `in-input--${size}`, {'in-input--show-error': showError}]">
+      <input v-bind:type="type" class="in-input__input" v-bind="$attrs" v-bind:value="value" v-on="inputListeners">
+      <in-icon v-bind:name="icon" v-if="icon"></in-icon>
     </div>
-  </pui-form-control>
+  </in-form-control>
 </template>
 
 <script>
-import PuiFormControl from './PuiFormControl';
-import PuiIcon from './PuiIcon';
+import InFormControl from './InFormControl';
+import InIcon from './InIcon';
 
 export default {
-  name: 'PuiInput',
+  name: 'InInput',
   components: {
-    PuiFormControl,
-    PuiIcon
+    InFormControl,
+    InIcon
   },
   props: {
     type: {
@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss">
-.pui-input {
+.in-input {
   --s-bezel-x: #{$input-bezel-x};
   --s-bezel-y: #{$input-bezel-y};
   --s-focus-width: #{$outline-width};
@@ -84,14 +84,14 @@ export default {
   --c-focus: #{$interaction-focus};
 }
 
-.pui-input--minor {
+.in-input--minor {
   --s-bezel-x: #{$input-bezel-x-minor};
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-focus-width: #{$outline-width};
   --s-max-heigh: #{$input-max-height-minor};
 }
 
-.pui-input__input {
+.in-input__input {
   @include input;
   display: block;
   width: 100%;
@@ -101,16 +101,16 @@ export default {
   max-height: var(--s-max-heigh); // fix inconsistent input heights (date)
 }
 
-.pui-input--minor .pui-input__input {
+.in-input--minor .in-input__input {
   @include small-text;
 }
 
-.pui-input--show-error {
+.in-input--show-error {
   --c-border: #{$input-error};
   --c-focus: #{$interaction-focus-error};
 }
 
-.pui-input__input:focus {
+.in-input__input:focus {
   position: relative;
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;

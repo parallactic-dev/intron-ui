@@ -1,9 +1,9 @@
 <template>
 <div>
-<table class="pui-table" v-bind:class="{'pui-table--hover': tableOptions.hoverEffect}">
-  <thead class="pui-table__thead" v-if="tableOptions.showHeader">
+<table class="in-table" v-bind:class="{'in-table--hover': tableOptions.hoverEffect}">
+  <thead class="in-table__thead" v-if="tableOptions.showHeader">
     <th 
-      class="pui-table__th"  
+      class="in-table__th"  
       v-for="(column, i) in columns" 
       v-bind:key="`th-${i}`"
       v-bind:style="{
@@ -11,23 +11,23 @@
       }">
         <a 
           href="#"
-          class="pui-table__th-title pui-table__th-title--sortable" 
+          class="in-table__th-title in-table__th-title--sortable" 
           v-if="column.sortable"
           v-bind:class="{
-            'pui-table__th--ordered': column.key === tableOptions.orderBy,
-            'pui-table__th--ordered-asc': column.key === tableOptions.orderBy && tableOptions.orderDirection === 'asc',
-            'pui-table__th--ordered-desc': column.key === tableOptions.orderBy && tableOptions.orderDirection === 'desc'
+            'in-table__th--ordered': column.key === tableOptions.orderBy,
+            'in-table__th--ordered-asc': column.key === tableOptions.orderBy && tableOptions.orderDirection === 'asc',
+            'in-table__th--ordered-desc': column.key === tableOptions.orderBy && tableOptions.orderDirection === 'desc'
           }"
           v-on:click="orderBy(column.key, $event)">
             {{ column.title }}
         </a>
-        <span class="pui-table__th-title" v-else>{{ column.title }}</span>
+        <span class="in-table__th-title" v-else>{{ column.title }}</span>
     </th>
   </thead>
-  <tbody class="pui-table__tbody">
-    <tr class="pui-table__tr" v-for="(row, rowIndex) in tableData" v-bind:key="`tr-${rowIndex}`" v-on:click="onRowSelect(row)">
+  <tbody class="in-table__tbody">
+    <tr class="in-table__tr" v-for="(row, rowIndex) in tableData" v-bind:key="`tr-${rowIndex}`" v-on:click="onRowSelect(row)">
       <td 
-        class="pui-table__td" 
+        class="in-table__td" 
         v-for="(column, columnIndex) in columns" 
         v-bind:key="`tr-${rowIndex}-td-${columnIndex}`">
           <component v-bind:is="column.renderer" v-bind:value="getCellValue(column.key, row)" v-if="column.renderer" />
@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: 'PuiTable',
+  name: 'InTable',
   props: {
     options: {
       type: Object,
@@ -102,7 +102,7 @@ export default {
 </script>
 
 <style lang="scss">
-.pui-table {
+.in-table {
   --s-bezel-x: #{$table-bezel-x};
   --s-bezel-y: #{$table-bezel-y};
   --s-bezel-header-y: #{$table-header-bezelx-y};
@@ -116,26 +116,26 @@ export default {
   width: 100%;
 }
 
-.pui-table--hover {
+.in-table--hover {
   --c-background-hover: #{$table-background-hover};
 }
 
-.pui-table__th {
+.in-table__th {
   @include small-title;
   padding: var(--s-bezel-header-y) 0 var(--s-bezel-header-y) var(--s-bezel-x);
   border-bottom: var(--s-border) solid var(--c-border);
 }
 
-.pui-table__th:first-child {
+.in-table__th:first-child {
   padding-left: 0;
 }
 
-.pui-table__th-title--sortable {
+.in-table__th-title--sortable {
   text-decoration: none;
   color: var(--c-text);
 }
 
-.pui-table__th--ordered::after {
+.in-table__th--ordered::after {
   content: "";
   display: inline-block;
   width: 0.5rem;
@@ -144,11 +144,11 @@ export default {
   border-right: var(--s-border) solid var(--c-border);
   transform: rotate(225deg);
 }
-.pui-table__th--ordered-desc::after {
+.in-table__th--ordered-desc::after {
   transform: translateY(-0.5rem) rotate(45deg);
 }
 
-.pui-table__tr {
+.in-table__tr {
   background-color: var(--c-background);
   background-image: linear-gradient(
     var(--c-background) 50%,
@@ -161,7 +161,7 @@ export default {
     border-color 100ms linear 0ms;
 }
 
-.pui-table__tr:hover {
+.in-table__tr:hover {
   background-position: 50% 100%;
   color: var(--c-text-hover);
   transition: 
@@ -170,17 +170,17 @@ export default {
     border-color 100ms linear 100ms;
 }
 
-.pui-table__td {
+.in-table__td {
   @include table;
   padding: var(--s-bezel-y) 0 var(--s-bezel-y) var(--s-bezel-x);
   border-bottom: var(--s-border) solid var(--c-border);
 }
 
-.pui-table__td:first-child {
+.in-table__td:first-child {
   padding-left: 0;
 }
 
-.pui-table__td .pui-form-control {
+.in-table__td .in-form-control {
   margin-top: calc(var(--s-bezel-y) * -1);
   margin-bottom: calc(var(--s-bezel-y) * -1);
 }

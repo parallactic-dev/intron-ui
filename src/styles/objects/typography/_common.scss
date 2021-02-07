@@ -1,5 +1,9 @@
 @import '@/styles/taxonomy/typography';
 
+html {
+  font-size: 10px;
+}
+
 body {
   @include body;
 }

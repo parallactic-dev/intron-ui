@@ -1,12 +1,12 @@
 <template>
-  <label class="pui-toggle" v-bind:class="[`pui-toggle--${type}`]">
-    <input class="pui-toggle__input" v-bind:type="type" v-bind="$attrs" v-bind:checked="checked" v-bind:value="value" v-on="inputListeners">
-    <span class="pui-toggle__control-wrap">
-      <span class="pui-toggle__control">
-        <span class="pui-toggle__box"></span>
-        <pui-icon class="pui-toggle__icon" name="close" v-if="type === 'checkbox'" />
+  <label class="in-toggle" v-bind:class="[`in-toggle--${type}`]">
+    <input class="in-toggle__input" v-bind:type="type" v-bind="$attrs" v-bind:checked="checked" v-bind:value="value" v-on="inputListeners">
+    <span class="in-toggle__control-wrap">
+      <span class="in-toggle__control">
+        <span class="in-toggle__box"></span>
+        <in-icon class="in-toggle__icon" name="close" v-if="type === 'checkbox'" />
       </span>
-      <span class="pui-toggle__label">
+      <span class="in-toggle__label">
         <slot />
       </span>
     </span>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import PuiIcon from './PuiIcon';
+import InIcon from './InIcon';
 
 export default {
-  name: 'PuiToggle',
+  name: 'InToggle',
   components: {
-    PuiIcon
+    InIcon
   },
   model: {
     prop: 'modelValue',
@@ -103,7 +103,7 @@ export default {
 </script>
 
 <style lang="scss">
-.pui-toggle {
+.in-toggle {
   --s-focus-width: #{$outline-width};
   --s-bezel-x: #{$checkbox-bezel-x};
   --s-bezel-y: #{$checkbox-bezel-y};
@@ -118,23 +118,23 @@ export default {
   margin-top: $toggle-stack;
 }
 
-.pui-toggle__input {
+.in-toggle__input {
   position: absolute;
   opacity: 0;
 }
 
-.pui-toggle__control-wrap {
+.in-toggle__control-wrap {
   display: flex;
   align-items: flex-start;
 }
 
-.pui-toggle__control {
+.in-toggle__control {
   position: relative;
   display: inline-block;
   overflow: hidden;
 }
 
-.pui-toggle__box {
+.in-toggle__box {
   display: block;
   width: calc(var(--s-width) - var(--s-border) * 2);
   height: calc(var(--s-width) - var(--s-border) * 2);
@@ -142,7 +142,7 @@ export default {
   overflow: hidden;
 }
 
-.pui-toggle__icon {
+.in-toggle__icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -153,32 +153,32 @@ export default {
   transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.pui-toggle__label {
+.in-toggle__label {
   display: block;
   margin-top: var(--s-bezel-y);
   margin-left: var(--s-bezel-x);
 }
 
-.pui-toggle__input:checked + .pui-toggle__control-wrap .pui-toggle__icon {
+.in-toggle__input:checked + .in-toggle__control-wrap .in-toggle__icon {
   transform: translateY(0);
   transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.pui-toggle__input:focus + .pui-toggle__control-wrap {
+.in-toggle__input:focus + .in-toggle__control-wrap {
   outline: var(--c-focus) solid var(--s-focus-width);
   background-color: var(--c-focus);
 }
 
-.pui-toggle--radio {
+.in-toggle--radio {
   --s-checkmark: #{$radio-checkmark-size};
 }
 
-.pui-toggle--radio .pui-toggle__box {
+.in-toggle--radio .in-toggle__box {
   position: relative;
   border-radius: 50%;
 }
 
-.pui-toggle--radio .pui-toggle__box:after {
+.in-toggle--radio .in-toggle__box:after {
   content: "";
   position: absolute;
   left: 50%;
@@ -192,7 +192,7 @@ export default {
   transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.pui-toggle--radio .pui-toggle__input:checked + .pui-toggle__control-wrap .pui-toggle__box:after {
+.in-toggle--radio .in-toggle__input:checked + .in-toggle__control-wrap .in-toggle__box:after {
   transform: scale(1);
   transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }

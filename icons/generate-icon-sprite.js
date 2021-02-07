@@ -9,7 +9,7 @@ const dirIconsSrc = 'icons/src/';
 const dirIconDist = 'icons/dist';
 
 const dirSpriteSrc = 'icons/dist/svg/';
-const dirSpriteDist = 'public';
+const dirSpriteDist = 'src/assets';
 
 let sprites = svgstore();
 
