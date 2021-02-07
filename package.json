@@ -1,6 +1,6 @@
 {
   "name": "@parallactic/insecta",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": false,
   "license": "MIT",
   "main": "dist/insecta.common.js",
