@@ -1,6 +1,6 @@
 <template>
   <in-form-control v-bind="$props">
-    <div class="in-input" v-bind:class="[`in-input--type-${type}`, `in-input--${size}`, {'in-input--show-error': showError}]">
+    <div class="in-input" v-bind:class="[`in-input--type-${type}`, `in-input--${size}`, {'in-input--icon': icon}, {'in-input--show-error': showError}]">
       <input v-bind:type="type" class="in-input__input" v-bind="$attrs" v-bind:value="value" v-on="inputListeners">
       <in-icon v-bind:name="icon" v-if="icon"></in-icon>
     </div>
@@ -82,6 +82,8 @@ export default {
   --s-max-heigh: #{$input-max-height};
   --c-border: #{$input-border};
   --c-focus: #{$interaction-focus};
+  --s-bezel-icon-x: 0;
+  --s-bezel-icon-y: 0;
 }
 
 .in-input--minor {
@@ -89,6 +91,10 @@ export default {
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-focus-width: #{$outline-width};
   --s-max-heigh: #{$input-max-height-minor};
+}
+
+.in-input--icon {
+  --s-bezel-x: #{$input-bezel-x * 2};
 }
 
 .in-input__input {
@@ -114,5 +120,11 @@ export default {
   position: relative;
   outline: var(--s-focus-width) solid var(--c-focus);
   z-index: 1;
+}
+
+.in-input__icon {
+  position: absolute;
+  top: var(--s-bezel-icon-y);
+  left: var(--s-bezel-icon-x);
 }
 </style>

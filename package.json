@@ -5,7 +5,8 @@
   "license": "MIT",
   "main": "dist/insecta.common.js",
   "files": [
-    "dist/*"
+    "dist/*",
+    "src/taxonomy/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
