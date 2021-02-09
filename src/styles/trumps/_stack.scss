@@ -1,111 +1,111 @@
 .in-stack {
   &--ant {
-    margin-top: $stack--ant;
+    margin-top: $stack--ant !important;
 
     &\@desktop {
       @include breakpoint('desktop') {
-        margin-top: $stack--ant;
+        margin-top: $stack--ant !important;
       }
     }
 
     &\@laptop {
       @include breakpoint('laptop') {
-        margin-top: $stack--ant;
+        margin-top: $stack--ant !important;
       }
     }
 
     &\@tablet {
       @include breakpoint('tablet') {
-        margin-top: $stack--ant;
+        margin-top: $stack--ant !important;
       }
     }
   }
 
   &--beetle {
-    margin-top: $stack--beetle;
+    margin-top: $stack--beetle !important;
 
     &\@desktop {
       @include breakpoint('desktop') {
-        margin-top: $stack--beetle;
+        margin-top: $stack--beetle !important;
       }
     }
 
     &\@laptop {
       @include breakpoint('laptop') {
-        margin-top: $stack--beetle;
+        margin-top: $stack--beetle !important;
       }
     }
 
     &\@tablet {
       @include breakpoint('tablet') {
-        margin-top: $stack--beetle;
+        margin-top: $stack--beetle !important;
       }
     }
   }
 
   &--bumblebee {
-    margin-top: $stack--bumblebee;
+    margin-top: $stack--bumblebee !important;
 
     &\@desktop {
       @include breakpoint('desktop') {
-        margin-top: $stack--bumblebee;
+        margin-top: $stack--bumblebee !important;
       }
     }
 
     &\@laptop {
       @include breakpoint('laptop') {
-        margin-top: $stack--bumblebee;
+        margin-top: $stack--bumblebee !important;
       }
     }
 
     &\@tablet {
       @include breakpoint('tablet') {
-        margin-top: $stack--bumblebee;
+        margin-top: $stack--bumblebee !important;
       }
     }
   }
 
   &--dragonfly {
-    margin-top: $stack--dragonfly;
+    margin-top: $stack--dragonfly !important;
 
     &\@desktop {
       @include breakpoint('desktop') {
-        margin-top: $stack--dragonfly;
+        margin-top: $stack--dragonfly !important;
       }
     }
 
     &\@laptop {
       @include breakpoint('laptop') {
-        margin-top: $stack--dragonfly;
+        margin-top: $stack--dragonfly !important;
       }
     }
 
     &\@tablet {
       @include breakpoint('tablet') {
-        margin-top: $stack--dragonfly;
+        margin-top: $stack--dragonfly !important;
       }
     }
   }
 }
 
 .in-no-stack {
-  margin-top: 0;
+  margin-top: 0 !important;
 }
 
 .in-no-stack\@desktop {
   @include breakpoint('desktop') {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 }
 
 .in-no-stack\@laptop {
   @include breakpoint('laptop') {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 }
 
 .in-no-stack\@tablet {
   @include breakpoint('tablet') {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 }
