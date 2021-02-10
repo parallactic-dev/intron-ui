@@ -2,7 +2,7 @@
   <in-form-control v-bind="$props">
     <div class="in-input" v-bind:class="[`in-input--type-${type}`, `in-input--${size}`, {'in-input--icon': icon}, {'in-input--show-error': showError}]">
       <input v-bind:type="type" class="in-input__input" v-bind="$attrs" v-bind:value="value" v-on="inputListeners">
-      <in-icon v-bind:name="icon" v-if="icon"></in-icon>
+      <in-icon class="in-input__icon" v-bind:name="icon" v-if="icon"></in-icon>
     </div>
   </in-form-control>
 </template>
@@ -80,10 +80,13 @@ export default {
   --s-focus-width: #{$outline-width};
   --s-border: #{$border-width};
   --s-max-heigh: #{$input-max-height};
+  --s-bezel-icon-x: #{$input-icon-bezel-x};
+  --s-bezel-icon-y: #{$input-icon-bezel-y};
+  --s-icon: #{$icon-size--m};
   --c-border: #{$input-border};
   --c-focus: #{$interaction-focus};
-  --s-bezel-icon-x: 0;
-  --s-bezel-icon-y: 0;
+
+  position: relative;
 }
 
 .in-input--minor {
@@ -91,10 +94,9 @@ export default {
   --s-bezel-y: #{$input-bezel-y-minor};
   --s-focus-width: #{$outline-width};
   --s-max-heigh: #{$input-max-height-minor};
-}
-
-.in-input--icon {
-  --s-bezel-x: #{$input-bezel-x * 2};
+  --s-bezel-icon-x: #{$input-icon-bezel-x-minor};
+  --s-bezel-icon-y: #{$input-icon-bezel-y-minor};
+  --s-icon: #{$icon-size--s};
 }
 
 .in-input__input {
@@ -105,6 +107,10 @@ export default {
   padding: calc(var(--s-bezel-y) - var(--s-border)) var(--s-bezel-x);
   border: var(--s-border) solid var(--c-border);
   max-height: var(--s-max-heigh); // fix inconsistent input heights (date)
+}
+
+.in-input--icon .in-input__input {
+  padding-left: calc(var(--s-bezel-icon-x) * 1.5 + var(--s-icon));
 }
 
 .in-input--minor .in-input__input {
@@ -126,5 +132,12 @@ export default {
   position: absolute;
   top: var(--s-bezel-icon-y);
   left: var(--s-bezel-icon-x);
+  width: var(--s-icon);
+  height: var(--s-icon);
+  z-index: 1;
+}
+
+.in-input__input::-webkit-calendar-picker-indicator {
+  display: none; // hide datepicker icon
 }
 </style>

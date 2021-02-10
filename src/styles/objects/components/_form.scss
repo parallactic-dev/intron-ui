@@ -27,3 +27,23 @@
 .in-form.in-form--inline > *:first-child {
   margin-left: 0;
 }
+
+.in-form.in-form--no-gap input,
+.in-form.in-form--no-gap button {
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+.in-form.in-form--no-gap > *:first-child input,
+.in-form.in-form--no-gap > button:first-child {
+  border-left-width: var(--s-border);
+}
+
+.in-form.in-form--no-gap > *:last-child input,
+.in-form.in-form--no-gap > button:last-child  {
+  border-right-width: var(--s-border);
+}
+
+.in-form.in-form--no-gap .in-button {
+  margin-top: 0;
+}

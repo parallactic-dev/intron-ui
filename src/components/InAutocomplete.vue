@@ -1,7 +1,7 @@
 <template>
   <in-form-control v-bind="$props">
     <div ref="root">
-      <div v-bind="rootProps" class="in-autocomplete" v-bind:class="[`in-autocomplete--${size}`, {'in-autocomplete--show-error': showError}]">
+      <div v-bind="rootProps" class="in-autocomplete" v-bind:class="[`in-autocomplete--${size}`, {'in-autocomplete--icon': icon}, {'in-autocomplete--show-error': showError}]">
         <input
           ref="input"
           class="in-autocomplete__input" 
@@ -11,7 +11,7 @@
           v-on:focus="core.handleFocus"
           v-on:blur="core.handleBlur"
           v-on="$listeners">
-        <in-icon v-bind:name="icon" v-if="icon" />
+        <in-icon class="in-autocomplete__icon" v-bind:name="icon" v-if="icon" />
         <in-spinner class="in-autocomplete__loading-spinner" v-if="loading" v-bind:size="size" />
         <ul
           ref="resultList"
@@ -260,6 +260,9 @@ export default {
   --s-result-bezel-y: #{$dropdown-item-bezel-y};
   --s-result-bezel-x: #{$dropdown-item-bezel-x};
   --s-result-list-max-height: #{$dropdown-max-height};
+  --s-bezel-icon-x: #{$input-icon-bezel-x};
+  --s-bezel-icon-y: #{$input-icon-bezel-y};
+  --s-icon: #{$icon-size--m};
   --c-border: #{$input-border};
   --c-background: #{$dropdown-background};
   --c-focus: #{$interaction-focus};
@@ -276,6 +279,9 @@ export default {
   --s-result-bezel-y: #{$dropdown-item-bezel-y-minor};
   --s-result-bezel-x: #{$dropdown-item-bezel-x-minor};
   --s-result-list-max-height: #{$dropdown-max-height-minor};
+  --s-bezel-icon-x: #{$input-icon-bezel-x-minor};
+  --s-bezel-icon-y: #{$input-icon-bezel-y-minor};
+  --s-icon: #{$icon-size--s};
 }
 
 .in-autocomplete__input {
@@ -286,6 +292,10 @@ export default {
   box-sizing: border-box;
   padding: calc(var(--s-bezel-y) - var(--s-border)) var(--s-bezel-x);
   border: var(--s-border) solid var(--c-border);
+}
+
+.in-autocomplete--icon .in-autocomplete__input {
+  padding-left: calc(var(--s-bezel-icon-x) * 1.5 + var(--s-icon));
 }
 
 .in-autocomplete--minor .in-autocomplete__input {
@@ -349,5 +359,14 @@ export default {
 .in-autocomplete__result:hover,
 .in-autocomplete__result[aria-selected="true"] {
   background-color: var(--c-focus);
+}
+
+.in-autocomplete__icon {
+  position: absolute;
+  top: var(--s-bezel-icon-y);
+  left: var(--s-bezel-icon-x);
+  width: var(--s-icon);
+  height: var(--s-icon);
+  z-index: 1;
 }
 </style>

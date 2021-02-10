@@ -51,6 +51,7 @@ export default {
   --s-focus-width: #{$outline-width};
 
   --c-border: #{$button-inverted-background};
+  --c-border-hover: #{$button-hover-background};
   --c-background: #{$button-inverted-background};
   --c-background-hover: #{$button-inverted-hover-background};
   --c-text: #{$button-inverted};
@@ -110,14 +111,11 @@ export default {
 .in-button:hover {
   background-position: 50% 100%;
   color: var(--c-text-hover);
+  border-color: var(--c-border-hover);
   transition: 
     background-color 200ms linear,
     background-position 210ms cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 100ms linear 100ms;
-}
-
-.in-button.in-button--text:hover {
-  --c-border: #{$button-hover-background};
+    border-color 100ms linear 0ms;
 }
 
 .in-button:focus {

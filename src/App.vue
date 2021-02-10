@@ -48,13 +48,15 @@
                     <in-input type="text" label="Input Label" v-model="inputModel" v-on:change="onEvent" /><br>
                     {{ inputModel }}
                     <in-input type="text" label="An input with help" help-text="This is a help Text" />
+                    <in-input type="text" label="An input with icon" icon="settings" />
+                    <in-autocomplete label="An input with icon" icon="settings" v-bind:search="search" />
                     <in-input type="email" label="An input with error" help-text="This is a help Text" error-message="Please enter a vaild email address" v-bind:show-error="true" />
                     <in-select label="Input Label" v-bind:options="[{value: 'first', label: 'First Option'}, {value: 'second', label: 'Second Option'}]" v-model="modelSelect" v-on:blur="onEvent" />
                     Model: {{modelSelect}}
                 </form>
               </div>
               <div class="in-grid__cell in-grid__cell--12 in-grid__cell--4@laptop">
-                <in-input type="text" label="Input Label" help-text="This is a help text" size="minor" />
+                <in-input type="text" label="Input Label" help-text="This is a help text" size="minor" icon="user" />
                 <div class="in-stack in-stack--ant">
                   <in-autocomplete label="Country" size="minor" v-bind:search="search" />
                 </div>
@@ -84,9 +86,9 @@
             <div class="in-stack in-stack--beetle">
               <h3 class="in-title in-title--small">Inline Form no Gap</h3>
               <form action="" class="in-form in-form--inline in-form--no-gap">
-                <in-input type="text" label="Full Name" />
-                <in-input type="text" label="E-Mail" />
-                <in-input type="date" label="Date of Birth" />
+                <in-input type="text" placeholder="Full Name" />
+                <in-input type="text" placeholder="E-Mail" />
+                <in-input type="date" placeholder="Date of Birth" />
                 <in-button icon="settings" v-bind:iconOnly="true"></in-button>
               </form>
             </div>
