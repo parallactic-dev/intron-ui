@@ -1,47 +1,71 @@
 <template>
-<div>
-<table class="in-table" v-bind:class="{'in-table--hover': tableOptions.hoverEffect}">
-  <thead class="in-table__thead" v-if="tableOptions.showHeader">
-    <th 
-      class="in-table__th"  
-      v-for="(column, i) in columns" 
-      v-bind:key="`th-${i}`"
-      v-bind:style="{
-        width: column.width ? column.width : null,
-      }">
-        <a 
-          href="#"
-          class="in-table__th-title in-table__th-title--sortable" 
-          v-if="column.sortable"
-          v-bind:class="{
-            'in-table__th--ordered': column.key === tableOptions.orderBy,
-            'in-table__th--ordered-asc': column.key === tableOptions.orderBy && tableOptions.orderDirection === 'asc',
-            'in-table__th--ordered-desc': column.key === tableOptions.orderBy && tableOptions.orderDirection === 'desc'
+  <div>
+    <table
+      class="in-table"
+      v-bind:class="{
+        'in-table--hover': tableOptions.hoverEffect,
+        'in-table--hidden-header': !tableOptions.showHeader,
+        'in-table--row-clickable': !tableOptions.rowClickable,
+      }"
+    >
+      <thead class="in-table__thead" v-if="tableOptions.showHeader">
+        <th
+          class="in-table__th"
+          v-for="(column, i) in columns"
+          v-bind:key="`th-${i}`"
+          v-bind:style="{
+            width: column.width ? column.width : null,
           }"
-          v-on:click="orderBy(column.key, $event)">
+        >
+          <a
+            href="#"
+            class="in-table__th-title in-table__th-title--sortable"
+            v-if="column.sortable"
+            v-bind:class="{
+              'in-table__th--ordered': column.key === tableOptions.orderBy,
+              'in-table__th--ordered-asc':
+                column.key === tableOptions.orderBy &&
+                tableOptions.orderDirection === 'asc',
+              'in-table__th--ordered-desc':
+                column.key === tableOptions.orderBy &&
+                tableOptions.orderDirection === 'desc',
+            }"
+            v-on:click="orderBy(column.key, $event)"
+          >
             {{ column.title }}
-        </a>
-        <span class="in-table__th-title" v-else>{{ column.title }}</span>
-    </th>
-  </thead>
-  <tbody class="in-table__tbody">
-    <tr class="in-table__tr" v-for="(row, rowIndex) in tableData" v-bind:key="`tr-${rowIndex}`" v-on:click="onRowSelect(row)">
-      <td 
-        class="in-table__td" 
-        v-for="(column, columnIndex) in columns" 
-        v-bind:key="`tr-${rowIndex}-td-${columnIndex}`">
-          <component v-bind:is="column.renderer" v-bind:value="getCellValue(column.key, row)" v-if="column.renderer" />
-          <span v-else>{{ getCellValue(column.key, row) }}</span>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div>
+          </a>
+          <span class="in-table__th-title" v-else>{{ column.title }}</span>
+        </th>
+      </thead>
+      <tbody class="in-table__tbody">
+        <tr
+          class="in-table__tr"
+          v-bind:class="{'in-table__tr-highlighted': highlightedRow === row}"
+          v-for="(row, rowIndex) in tableData"
+          v-bind:key="`tr-${rowIndex}`"
+          v-on:click="onRowClick(row)"
+        >
+          <td
+            class="in-table__td"
+            v-for="(column, columnIndex) in columns"
+            v-bind:key="`tr-${rowIndex}-td-${columnIndex}`"
+          >
+            <component
+              v-bind:is="column.renderer"
+              v-bind:value="getCellValue(column.key, row)"
+              v-if="column.renderer"
+            />
+            <span v-else>{{ getCellValue(column.key, row) }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'InTable',
+  name: "InTable",
   props: {
     options: {
       type: Object,
@@ -55,50 +79,65 @@ export default {
       type: Array,
       default: () => []
     },
+    highlightedRow: {
+      default: undefined
+    }
   },
   data() {
     return {
-      tableOptions: null,
-    }
+      tableOptions: null
+    };
   },
   created() {
     const defaultOptions = {
       orderBy: this.columns[0].key || null,
-      orderDirection: 'asc',
+      orderDirection: "asc",
       showHeader: true,
-      hoverEffect: true
+      hoverEffect: true,
+      rowClickable: false,
     };
     this.tableOptions = Object.assign({}, defaultOptions, this.options);
   },
   methods: {
     getCellValue(key, rowData) {
-      return key.split('.').reduce(function(prev, curr) {
-        return prev ? prev[curr] : null
-      }, rowData || self)
+      return key.split(".").reduce(function(prev, curr) {
+        return prev ? prev[curr] : null;
+      }, rowData || self);
     },
     orderBy(key, event) {
       event.preventDefault();
       if (this.tableOptions.orderBy === key) {
-        this.tableOptions.orderDirection = this.tableOptions.orderDirection === 'asc' ? 'desc' : 'asc';
+        this.tableOptions.orderDirection =
+          this.tableOptions.orderDirection === "asc" ? "desc" : "asc";
       } else {
         this.tableOptions.orderBy = key;
-        this.tableOptions.orderDirection = 'asc';
+        this.tableOptions.orderDirection = "asc";
       }
     },
-    onRowSelect(row) {
-      this.$emit('rowSelect', row);
+    onRowClick(row) {
+      if (this.tableOptions.rowClickable) {
+        this.$emit('rowClick', row);
+      }
     }
   },
   computed: {
     tableData() {
       if (!this.data || !this.tableOptions) return [];
       let tableData = [...this.data];
-      return this.tableOptions.orderDirection === 'asc' 
-        ? tableData.sort((a, b) => this.getCellValue(this.tableOptions.orderBy, a).localeCompare(this.getCellValue(this.tableOptions.orderBy, b)))
-        : tableData.sort((a, b) => this.getCellValue(this.tableOptions.orderBy, b).localeCompare(this.getCellValue(this.tableOptions.orderBy, a)))
+      return this.tableOptions.orderDirection === "asc"
+        ? tableData.sort((a, b) =>
+            this.getCellValue(this.tableOptions.orderBy, a).localeCompare(
+              this.getCellValue(this.tableOptions.orderBy, b)
+            )
+          )
+        : tableData.sort((a, b) =>
+            this.getCellValue(this.tableOptions.orderBy, b).localeCompare(
+              this.getCellValue(this.tableOptions.orderBy, a)
+            )
+          );
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -148,6 +187,10 @@ export default {
   transform: translateY(-0.5rem) rotate(45deg);
 }
 
+.in-table--hidden-header .in-table__tbody {
+  border-top: var(--s-border) solid var(--c-border);
+}
+
 .in-table__tr {
   background-color: var(--c-background);
   background-image: linear-gradient(
@@ -155,8 +198,7 @@ export default {
     var(--c-background-hover) 50%
   );
   background-size: 100% 200%;
-  transition: 
-    background-color 200ms linear,
+  transition: background-color 200ms linear,
     background-position 210ms cubic-bezier(0.16, 1, 0.3, 1),
     border-color 100ms linear 0ms;
 }
@@ -164,10 +206,13 @@ export default {
 .in-table__tr:hover {
   background-position: 50% 100%;
   color: var(--c-text-hover);
-  transition: 
-    background-color 200ms linear,
+  transition: background-color 200ms linear,
     background-position 210ms cubic-bezier(0.16, 1, 0.3, 1),
     border-color 100ms linear 100ms;
+}
+
+.in-table--row-clickable .in-table__tr {
+  cursor: pointer;
 }
 
 .in-table__td {
@@ -184,5 +229,4 @@ export default {
   margin-top: calc(var(--s-bezel-y) * -1);
   margin-bottom: calc(var(--s-bezel-y) * -1);
 }
-
 </style>
