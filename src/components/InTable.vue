@@ -5,7 +5,7 @@
       v-bind:class="{
         'in-table--hover': tableOptions.hoverEffect,
         'in-table--hidden-header': !tableOptions.showHeader,
-        'in-table--row-clickable': !tableOptions.rowClickable,
+        'in-table--row-clickable': tableOptions.rowClickable,
       }"
     >
       <thead class="in-table__thead" v-if="tableOptions.showHeader">
@@ -40,7 +40,7 @@
       <tbody class="in-table__tbody">
         <tr
           class="in-table__tr"
-          v-bind:class="{'in-table__tr-highlighted': highlightedRow === row}"
+          v-bind:class="{'in-table__tr--highlighted': highlightedRow === row}"
           v-for="(row, rowIndex) in tableData"
           v-bind:key="`tr-${rowIndex}`"
           v-on:click="onRowClick(row)"
@@ -203,12 +203,17 @@ export default {
     border-color 100ms linear 0ms;
 }
 
-.in-table__tr:hover {
+.in-table__tr:hover,
+.in-table__tr--highlighted {
   background-position: 50% 100%;
   color: var(--c-text-hover);
   transition: background-color 200ms linear,
     background-position 210ms cubic-bezier(0.16, 1, 0.3, 1),
     border-color 100ms linear 100ms;
+}
+
+.in-table__tr--highlighted {
+  --c-background-hover: #{$table-background-focus};
 }
 
 .in-table--row-clickable .in-table__tr {

@@ -125,13 +125,17 @@
 
           <div class="in-stack in-stack--dragonfly">
             <in-table 
+              v-bind:options="{
+                rowClickable: true,
+              }"
               v-bind:columns="[
                 { title: 'Name', key: 'name', sortable: true, gridCells: 4, width: '25rem' },
                 { title: 'Phone', key: 'phone', sortable: true },
                 { title: 'State', key: 'state', sortable: false, renderer: 'DurationFormatter', width: '20rem' },
               ]"
               v-bind:data="tableData"
-              v-on:rowSelect="onRowSelect">
+              v-bind:highlightedRow="selectedRow"
+              v-on:rowClick="onRowSelect">
             </in-table>
           </div>
         </div>
@@ -179,7 +183,8 @@ export default {
         {name: 'Hans Wugger', phone: '079 569 31 48', state: 'open'},
         {name: 'James Morris', phone: '044 515 20 55', state: 'billed'},
         {name: 'Hannah Tunnel', phone: '–', state: 'open'}
-      ]
+      ],
+      selectedRow: undefined
     }
   },
   methods: {
@@ -249,6 +254,9 @@ export default {
           }))
         }, 750)
       })
+    },
+    onRowSelect(row) {
+      this.selectedRow = row === this.selectedRow ? undefined : row;
     }
   }
 }
