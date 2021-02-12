@@ -115,7 +115,7 @@ export default {
     }
     return {
       core,
-      value: this.modelValue,
+      value: this.getResultValue(this.modelValue),
       resultListId: uniqueId('in-autocomplete-result-list-'),
       results: [],
       selectedIndex: -1,
@@ -209,7 +209,7 @@ export default {
         this.$refs.resultList
       )
     }
-    this.core.checkSelectedResultVisible(this.$refs.resultList)
+    this.core.checkSelectedResultVisible(this.$refs.resultList);
   },
   methods: {
     setValue(result) {
@@ -245,6 +245,13 @@ export default {
       }
       this.core.hideResults()
     },
+  },
+  watch: {
+    modelValue(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.value = this.getResultValue(newValue);
+      }
+    }
   },
 };
 </script>

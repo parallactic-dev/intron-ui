@@ -41,7 +41,7 @@
         <tr
           class="in-table__tr"
           v-bind:class="{'in-table__tr--highlighted': highlightedRow === row}"
-          v-for="(row, rowIndex) in tableData"
+          v-for="(row, rowIndex) in sortedTableData"
           v-bind:key="`tr-${rowIndex}`"
           v-on:click="onRowClick(row)"
         >
@@ -85,6 +85,7 @@ export default {
   },
   data() {
     return {
+      tableData: [],
       tableOptions: null
     };
   },
@@ -97,6 +98,9 @@ export default {
       rowClickable: false,
     };
     this.tableOptions = Object.assign({}, defaultOptions, this.options);
+  },
+  mounted() {
+    this.tableData = this.data;
   },
   methods: {
     getCellValue(key, rowData) {
@@ -121,9 +125,9 @@ export default {
     }
   },
   computed: {
-    tableData() {
-      if (!this.data || !this.tableOptions) return [];
-      let tableData = [...this.data];
+    sortedTableData() {
+      if (!this.tableData || !this.tableOptions) return [];
+      let tableData = [...this.tableData];
       return this.tableOptions.orderDirection === "asc"
         ? tableData.sort((a, b) =>
             this.getCellValue(this.tableOptions.orderBy, a).localeCompare(
@@ -136,7 +140,7 @@ export default {
             )
           );
     }
-  }
+  },
 };
 </script>
 

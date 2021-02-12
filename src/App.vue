@@ -66,7 +66,7 @@
               </div>
               <div class="in-grid__cell in-grid__cell--12 in-grid__cell--4@laptop">
                 <in-autocomplete label="Country" v-bind:search="search" v-model="autocompleteModel" />
-                {{ autocompleteModel }}
+                <span v-on:click="autocompleteModel = 'Switzerland'">Set Value</span> – Model: {{ autocompleteModel }}
                 <div class="in-stack in-stack--beetle">
                   <in-textarea label="Textarea" placeholder="Write about your visit" />
                 </div>
@@ -178,7 +178,7 @@ export default {
       checkboxModel: ['vegi', 'vegan'],
       checkboxModel2: false,
       radioModel: undefined,
-      autocompleteModel: 'Switzerland',
+      autocompleteModel: undefined,
       tableData: [
         {name: 'Hans Wugger', phone: '079 569 31 48', state: 'open'},
         {name: 'James Morris', phone: '044 515 20 55', state: 'billed'},
