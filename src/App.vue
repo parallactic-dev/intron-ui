@@ -131,7 +131,7 @@
               v-bind:columns="[
                 { title: 'Name', key: 'name', sortable: true, gridCells: 4, width: '25rem' },
                 { title: 'Phone', key: 'phone', sortable: true },
-                { title: 'State', key: 'state', sortable: false, renderer: 'DurationFormatter', width: '20rem' },
+                { title: 'State', key: 'state', sortable: false, renderer: { name: 'DurationFormatter', component: renderer}, width: '20rem' },
               ]"
               v-bind:data="tableData"
               v-bind:highlightedRow="selectedRow"
@@ -157,6 +157,8 @@ import InToggle from './components/InToggle';
 import InAutocomplete from './components/InAutocomplete';
 import InSpinner from './components/InSpinner';
 import InTable from './components/InTable';
+import DurationFormatter from '@/components/global/DurationFormatter.js';
+
 
 export default {
   name: 'App',
@@ -169,10 +171,11 @@ export default {
     InToggle,
     InAutocomplete,
     InSpinner,
-    InTable
+    InTable,
   },
   data() {
     return {
+      renderer: DurationFormatter,
       modelSelect: 'first',
       inputModel: 'Model Value',
       checkboxModel: ['vegi', 'vegan'],

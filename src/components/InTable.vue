@@ -47,11 +47,15 @@
         >
           <td
             class="in-table__td"
+            v-bind:class="[`in-table__td--${column.key.replace('.', '-')}`]"
             v-for="(column, columnIndex) in columns"
             v-bind:key="`tr-${rowIndex}-td-${columnIndex}`"
+            v-bind:style="{
+              width: column.width ? column.width : null,
+            }"
           >
             <component
-              v-bind:is="column.renderer"
+              v-bind:is="column.renderer.name"
               v-bind:value="getCellValue(column.key, row)"
               v-if="column.renderer"
             />
@@ -90,6 +94,7 @@ export default {
     };
   },
   created() {
+    // merge table options
     const defaultOptions = {
       orderBy: this.columns[0].key || null,
       orderDirection: "asc",
@@ -98,6 +103,13 @@ export default {
       rowClickable: false,
     };
     this.tableOptions = Object.assign({}, defaultOptions, this.options);
+
+    // load render components
+    this.columns.forEach(column => {
+      if (column.renderer) {
+        this.$options.components[column.renderer.name] = column.renderer.component;
+      }
+    })
   },
   mounted() {
     this.tableData = this.data;
