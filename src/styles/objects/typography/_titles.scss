@@ -1,0 +1,15 @@
+.in-title {
+  @include title;
+}
+
+.in-title--page {
+  @include page-title;
+}
+
+.in-title--section {
+  @include section-title;
+}
+
+.in-title--sub {
+  @include sub-title;
+}

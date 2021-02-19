@@ -3,6 +3,31 @@
   font-size: 1.6rem;
 }
 
+@mixin title {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: $stack--beetle;
+  margin-bottom: 0.8rem;
+}
+
+@mixin sub-title {
+  font-weight: 400;
+  margin-top: $stack--beetle;
+  margin-bottom: 0.8rem;
+}
+
+@mixin page-title {
+  font-size: 3.2rem;
+  margin-top: $stack--beetle;
+  margin-bottom: $stack--dragonfly;
+}
+
+@mixin section-title {
+  font-size: 2rem;
+  margin-top: $stack--bumblebee;
+  margin-bottom: 2rem;
+}
+
 @mixin button {
   font-size: 1.6rem;
   font-weight: 600;
