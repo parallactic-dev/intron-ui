@@ -124,6 +124,66 @@
           </div>
 
           <div class="in-stack in-stack--dragonfly">
+            <h2 class="in-title">Dropdown</h2>
+            <in-dropdown type="secondary">
+              <template slot="default">
+                Type something
+              </template>
+              <template v-slot:list>
+                <in-dropdown-item>Do something fancy</in-dropdown-item>
+                <in-dropdown-item tag="a" href="#">Or something even fancier</in-dropdown-item>
+                <in-dropdown-item icon="settings" v-bind:divider="true">Or something with an icon</in-dropdown-item>
+              </template>
+            </in-dropdown>
+            <in-dropdown type="text">
+              <template slot="default">
+                Type something
+              </template>
+              <template v-slot:list>
+                <in-dropdown-item>Do something fancy</in-dropdown-item>
+                <in-dropdown-item tag="a" href="#">Or something even fancier</in-dropdown-item>
+              </template>
+            </in-dropdown>
+            <in-dropdown type="text" icon="settings" v-bind:icon-only="true">
+              <template v-slot:list>
+                <in-dropdown-item>Do something fancy</in-dropdown-item>
+                <in-dropdown-item tag="a" href="#">Or something even fancier</in-dropdown-item>
+              </template>
+            </in-dropdown>
+
+            <div class="in-stack in-stack--ant">
+              <in-dropdown type="secondary" size="minor">
+                <template slot="default">
+                  Type something
+                </template>
+                <template v-slot:list>
+                  <in-dropdown-item>Do something fancy</in-dropdown-item>
+                  <in-dropdown-item tag="a" href="#">Or something even fancier</in-dropdown-item>
+                </template>
+              </in-dropdown>
+              <in-dropdown type="text" size="minor">
+                <template slot="default">
+                  Type something
+                </template>
+                <template v-slot:list>
+                  <in-dropdown-item>Do something fancy</in-dropdown-item>
+                  <in-dropdown-item tag="a" href="#">Or something even fancier</in-dropdown-item>
+                </template>
+              </in-dropdown>
+              <in-dropdown type="text" icon="settings" v-bind:icon-only="true" size="minor">
+                <template v-slot:list>
+                  <in-dropdown-item>Do something fancy</in-dropdown-item>
+                  <in-dropdown-item tag="a" href="#">Or something even fancier</in-dropdown-item>
+                </template>
+              </in-dropdown>
+            </div>
+
+            <div class="in-stack in-stack--ant">
+              
+            </div>
+          </div>
+
+          <div class="in-stack in-stack--dragonfly">
             <in-table 
               v-bind:options="{
                 rowClickable: true,
@@ -157,6 +217,8 @@ import InToggle from './components/InToggle';
 import InAutocomplete from './components/InAutocomplete';
 import InSpinner from './components/InSpinner';
 import InTable from './components/InTable';
+import InDropdown from './components/InDropdown';
+import InDropdownItem from './components/InDropdownItem';
 import DurationFormatter from '@/components/global/DurationFormatter.js';
 
 
@@ -172,6 +234,8 @@ export default {
     InAutocomplete,
     InSpinner,
     InTable,
+    InDropdown,
+    InDropdownItem,
   },
   data() {
     return {
@@ -187,7 +251,7 @@ export default {
         {name: 'James Morris', phone: '044 515 20 55', state: 'billed'},
         {name: 'Hannah Tunnel', phone: '–', state: 'open'}
       ],
-      selectedRow: undefined
+      selectedRow: undefined,
     }
   },
   methods: {
