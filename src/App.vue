@@ -193,7 +193,7 @@
               v-bind:columns="[
                 { title: 'Name', key: 'name', sortable: true, gridCells: 4, width: '25rem' },
                 { title: 'Phone', key: 'phone', sortable: true },
-                { title: 'State', key: 'state', sortable: false, renderer: { name: 'DurationFormatter', component: renderer}, width: '20rem' },
+                { title: 'State', key: 'state', sortable: false, renderer: { name: 'DurationFormatter', component: renderer}, width: '6rem' },
               ]"
               v-bind:data="tableData"
               v-bind:highlightedRow="selectedRow"

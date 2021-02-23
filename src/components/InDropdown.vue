@@ -28,7 +28,7 @@
 
 <script>
 import uniqueId from '@/util/uniqueId';
-import getRelativePosition from '@/util/getRelativePosition';
+import {getVerticalRelativePosition, getHorizontalRelativePosition} from '@/util/getRelativePosition';
 import InButton from './InButton';
 
 export default {
@@ -61,13 +61,25 @@ export default {
       listItems: [],
       listId: uniqueId('in-dropdown-list-'),
       resetPosition: true,
-      position: 'below'
+      position: {
+        x: 'left',
+        y: 'below'
+      }
     }
   },
   mounted() {
     this.listItems = Array.from(this.$refs.list.children);
     this.$refs.root.addEventListener('keydown', this.handleKeyDown);
     document.body.addEventListener('click', this.handleDocumentClick);
+
+    // add click eventlisters for list items to hide list
+    this.listItems.forEach(listItem => {
+      const element = listItem.querySelector('.in-dropdown-item__interactive-element');
+      element.addEventListener('click', this.hideList);
+    });
+
+    // set initial position of list
+    this.setListPosition();
   },
   updated() {
     if (!this.$refs.button || !this.$refs.list) {
@@ -75,13 +87,22 @@ export default {
     }
     if (this.resetPosition && this.listItems.length > 0) {
       this.resetPosition = false;
-      this.position = getRelativePosition(
-        this.$refs.button.$el,
-        this.$refs.list
-      );
+      this.setListPosition();
     }
   },
   methods: {
+    setListPosition() {
+      this.position = {
+        x: getHorizontalRelativePosition(
+          this.$refs.button.$el,
+          this.$refs.list
+        ),
+        y: getVerticalRelativePosition(
+          this.$refs.button.$el,
+          this.$refs.list
+        )
+      }
+    },
     handleDocumentClick(event) {
       if (this.$refs.root.contains(event.target)) {
         return
@@ -148,13 +169,14 @@ export default {
   },
   computed: {
     listProps() {
-      const yPosition = this.position === 'below' ? 'top' : 'bottom'
+      const yPosition = this.position.y === 'below' ? 'top' : 'bottom';
+      const xPosition = this.position.x;
       return {
         id: this.listId,
         style: {
           position: 'absolute',
           zIndex: 1,
-          left: 0,
+          [xPosition]: 0,
           visibility: this.isExpanded ? 'visible' : 'hidden',
           pointerEvents: this.isExpanded ? 'auto' : 'none',
           [yPosition]: '100%',
@@ -165,6 +187,10 @@ export default {
   beforeDestroy() {
     this.$refs.root.removeEventListener('keydown', this.handleKeyDown);
     document.body.removeEventListener('click', this.handleDocumentClick);
+    this.listItems.forEach(listItem => {
+      const element = listItem.querySelector('.in-dropdown-item__interactive-element');
+      element.removeEventListener('click', this.hideList);
+    });
   },
 };
 </script>

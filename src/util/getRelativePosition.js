@@ -4,7 +4,7 @@
 // 2. There is more room above element1 than there is below
 // 3. Placing elemen2 above 1 won't overflow window.
 // Adapted from Trevor Eyre (https://github.com/trevoreyre/autocomplete).
-const getRelativePosition = (element1, element2) => {
+export const getVerticalRelativePosition = (element1, element2) => {
   const position1 = element1.getBoundingClientRect()
   const position2 = element2.getBoundingClientRect()
 
@@ -16,4 +16,14 @@ const getRelativePosition = (element1, element2) => {
   return positionAbove ? 'above' : 'below'
 }
 
-export default getRelativePosition
+// Calculates whether element2 should be above or below element1. Always
+// places element2 below unless all of the following:
+// 1. There isn't enough visible viewport on the right to fit element2
+export const getHorizontalRelativePosition = (element1, element2) => {
+  const position1 = element1.getBoundingClientRect()
+  const position2 = element2.getBoundingClientRect()
+
+  const positionLeft = position1.left + position2.width > window.innerWidth
+
+  return positionLeft ? 'right' : 'left'
+}
