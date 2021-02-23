@@ -9,6 +9,8 @@ import InToggle from './components/InToggle';
 import InAutocomplete from './components/InAutocomplete';
 import InSpinner from './components/InSpinner';
 import InTable from './components/InTable';
+import InDropdown from './components/InDropdown';
+import InDropdownItem from './components/InDropdownItem';
 
 const Components = {
   InButton,
@@ -19,7 +21,9 @@ const Components = {
   InToggle,
   InAutocomplete,
   InSpinner,
-  InTable
+  InTable,
+  InDropdown,
+  InDropdownItem
 };
 
 Object.keys(Components).forEach(name => {
