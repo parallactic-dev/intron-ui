@@ -10,6 +10,7 @@
       v-bind:is="tag" 
       class="in-dropdown-item__interactive-element" 
       v-bind="$attrs"
+      v-on="$listeners"
     >
       <in-icon class="in-dropdown-item__icon" v-bind:name="icon" size="m" v-if="icon" />
       <span class="in-dropdown-item__label">
