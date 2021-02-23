@@ -246,7 +246,8 @@ export default {
   padding-left: 0;
 }
 
-.in-table__td .in-form-control {
+.in-table__td .in-form-control,
+.in-table__td .in-dropdown {
   margin-top: calc(var(--s-bezel-y) * -1);
   margin-bottom: calc(var(--s-bezel-y) * -1);
 }
