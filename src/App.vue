@@ -221,7 +221,7 @@ import InSpinner from './components/InSpinner';
 import InTable from './components/InTable';
 import InDropdown from './components/InDropdown';
 import InDropdownItem from './components/InDropdownItem';
-import DurationFormatter from '@/components/global/DurationFormatter.js';
+import ActionRenderer from '@/components/global/ActionRenderer.js';
 
 
 export default {
@@ -241,7 +241,7 @@ export default {
   },
   data() {
     return {
-      renderer: DurationFormatter,
+      renderer: ActionRenderer,
       modelSelect: 'first',
       inputModel: 'Model Value',
       checkboxModel: ['vegi', 'vegan'],
