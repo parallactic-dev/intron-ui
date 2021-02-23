@@ -61,7 +61,7 @@ export default {
   --s-bezel-y: #{$button-bezel-y};
   --s-border: #{$border-width};
   --s-icon: #{$icon-size--m};
-  --s-icon-stack: #{$icon-inline-stack};
+  --s-icon-stack: #{$icon-inline-stack * 2};
   --s-focus-width: #{$outline-width};
   --s-expandable-bezel-x: #{$button-expandable-bezel-x};
   --s-expandable-icon-bezel-x: #{$button-expandable-icon-bezel-x};
@@ -118,6 +118,7 @@ export default {
   --s-bezel-y: #{$button-bezel-y-minor};
   --s-focus-width: #{$outline-width-minor};
   --s-icon: #{$icon-size--s};
+  --s-icon-stack: #{$icon-inline-stack * 1.25};
   --s-expandable-bezel-x: #{$button-expandable-bezel-x-minor};
   --s-expandable-icon-bezel-x: #{$button-expandable-icon-bezel-x-minor};
 }
@@ -125,6 +126,7 @@ export default {
 .in-button--minor.in-button--icon {
   --s-bezel-x: #{$icon-button-bezel-x-minor}; 
   --s-bezel-y: #{$icon-button-bezel-y-minor};
+  --s-icon-stack: #{$icon-inline-stack * 2};
 }
 
 .in-button--icon.in-button--expandable {
@@ -160,7 +162,7 @@ export default {
 
 .in-button__icon {
   vertical-align: middle;
-  margin: calc(var(--s-icon) * -1) calc(var(--s-icon-stack) * -1);
+  margin: calc(var(--s-icon) * -1) calc(var(--s-icon-stack) * -0.5);
 }
 
 .in-button__label {
@@ -169,7 +171,7 @@ export default {
 }
 
 .in-button:not(.in-button--icon) .in-button__icon + .in-button__label {
-  margin-left: calc(var(--s-icon-stack) * 2);
+  margin-left: var(--s-icon-stack);
 }
 
 .in-button--expandable .in-button__label {

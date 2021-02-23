@@ -34,6 +34,8 @@
           </div>
           <div class="in-stack in-stack--ant">
             <in-button size="minor" icon="settings">Button Label</in-button>
+            <in-button size="minor" icon="add" type="secondary">Add new</in-button>
+            <in-button size="minor" icon="add" type="text">Add new</in-button>
           </div>
           <div class="in-stack in-stack--ant">
             <in-button size="minor" icon="settings" type="primary" v-bind:iconOnly="true"></in-button>
