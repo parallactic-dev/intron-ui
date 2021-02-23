@@ -153,6 +153,13 @@ export default {
           );
     }
   },
+  watch: {
+    data(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.tableData = newVal;
+      }
+    }
+  }
 };
 </script>
 
