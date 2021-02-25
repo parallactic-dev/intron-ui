@@ -7,7 +7,7 @@
           class="in-autocomplete__input" 
           v-bind="inputProps"
           v-on:input="handleInput"
-          v-on:keydown="core.handleKeyDown"
+          v-on:keydown="handleKeyDown"
           v-on:focus="core.handleFocus"
           v-on:blur="core.handleBlur"
           v-on="$listeners">
@@ -235,6 +235,10 @@ export default {
     handleInput(event) {
       this.value = event.target.value
       this.core.handleInput(event)
+    },
+    handleKeyDown(event) {
+      event.stopPropagation();
+      this.core.handleKeyDown(event);
     },
     handleSubmit(selectedResult) {
       this.$emit('update', selectedResult)
