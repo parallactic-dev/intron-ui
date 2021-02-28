@@ -21,6 +21,14 @@
           </div>
 
           <div class="in-stack in-stack--ant">
+            <h2 class="in-title">Buttons disabled</h2>
+            <in-button v-bind:disabled="true">Button Label</in-button>
+            <in-button v-bind:disabled="true" type="secondary">Button Label</in-button>
+            <in-button v-bind:disabled="true" type="text">Button Label</in-button>
+          </div>
+
+          <div class="in-stack in-stack--ant">
+            <h2 class="in-title">Buttons Icon</h2>
             <in-button icon="settings">Button Label</in-button>
           </div>
           <div class="in-stack in-stack--ant">

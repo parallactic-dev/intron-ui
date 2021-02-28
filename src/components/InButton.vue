@@ -5,8 +5,10 @@
       `in-button--${type}`, 
       `in-button--${size}`, 
       {'in-button--icon': iconOnly},
-      {'in-button--expandable': expandable}
-    ]" 
+      {'in-button--expandable': expandable},
+      {'in-button--disabled': disabled}
+    ]"
+    v-bind:disabled="disabled"
     v-on="$listeners"
   >
     <in-icon class="in-button__icon" v-bind:name="icon" v-if="icon" />
@@ -43,6 +45,10 @@ export default {
       default: false
     },
     expandable: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -123,6 +129,20 @@ export default {
   --s-expandable-icon-bezel-x: #{$button-expandable-icon-bezel-x-minor};
 }
 
+.in-button--primary.in-button--disabled {
+  --c-border: #{$button-disabled};
+  --c-background: #{$button-disabled};
+}
+
+.in-button--secondary.in-button--disabled {
+  --c-border: #{$button-disabled};
+  --c-text: #{$button-disabled};
+}
+
+.in-button--text.in-button--disabled {
+  --c-text: #{$button-disabled};
+}
+
 .in-button--minor.in-button--icon {
   --s-bezel-x: #{$icon-button-bezel-x-minor}; 
   --s-bezel-y: #{$icon-button-bezel-y-minor};
@@ -139,7 +159,7 @@ export default {
   --s-expandable-icon-bezel-x: #{$button-expandable-icon-only-icon-bezel-x-minor};
 }
 
-.in-button:hover {
+.in-button:not(.in-button--disabled):hover {
   background-position: 50% 100%;
   color: var(--c-text-hover);
   border-color: var(--c-border-hover);
@@ -191,5 +211,9 @@ export default {
 
 .in-button--icon.in-button--expandable .in-button__expander-icon {
   right: calc(var(--s-expandable-icon-bezel-x) * 0.33);
+}
+
+.in-button--disabled {
+  cursor: not-allowed;
 }
 </style>
