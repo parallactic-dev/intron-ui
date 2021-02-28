@@ -9,6 +9,9 @@
       }"
     >
       <thead class="in-table__thead" v-if="tableOptions.showHeader">
+        <th class="in-table__th in-table__th--selector" v-if="tableOptions.multiSelection">
+          <in-toggle v-on:change="handleSelectAllRows" v-model="allRowsSelected" />
+        </th>
         <th
           class="in-table__th"
           v-for="(column, i) in columns"
@@ -45,6 +48,9 @@
           v-bind:key="`tr-${rowIndex}`"
           v-on:click="onRowClick(row)"
         >
+          <td class="in-table__td in-table__td--selector" v-if="tableOptions.multiSelection">
+            <in-toggle v-bind:value="row" v-model="selectedRows" />
+          </td>
           <td
             class="in-table__td"
             v-bind:class="[`in-table__td--${column.key.replace('.', '-')}`]"
@@ -68,8 +74,13 @@
 </template>
 
 <script>
+import InToggle from '@/components/InToggle';
+
 export default {
   name: "InTable",
+  components: {
+    InToggle
+  },
   props: {
     options: {
       type: Object,
@@ -90,7 +101,8 @@ export default {
   data() {
     return {
       tableData: [],
-      tableOptions: null
+      tableOptions: null,
+      selectedRows: [],
     };
   },
   created() {
@@ -101,6 +113,7 @@ export default {
       showHeader: true,
       hoverEffect: true,
       rowClickable: false,
+      multiSelection: false,
     };
     this.tableOptions = Object.assign({}, defaultOptions, this.options);
 
@@ -131,9 +144,22 @@ export default {
       }
     },
     onRowClick(row) {
-      if (this.tableOptions.rowClickable) {
+      if (!this.tableOptions.rowClickable) return;
+      if (this.tableOptions.multiSelection) {
+        const index = this.selectedRows.indexOf(row);
+        index > -1 
+          ? this.selectedRows.splice(index, 1) 
+          : this.selectedRows.push(row);
+        this.$emit('rowClick', this.selectedRows);
+      } else {
         this.$emit('rowClick', row);
       }
+    },
+    handleSelectAllRows() {
+      this.tableData.length === this.selectedRows.length
+        ? this.selectedRows = []
+        : this.selectedRows = [...this.tableData];
+      this.$emit('rowClick', this.selectedRows);
     }
   },
   computed: {
@@ -151,6 +177,14 @@ export default {
               this.getCellValue(this.tableOptions.orderBy, a)
             )
           );
+    },
+    allRowsSelected: {
+      get() {
+        return this.tableData.length === this.selectedRows.length;
+      },
+      set(value){
+        return value
+      } 
     }
   },
   watch: {
@@ -253,8 +287,28 @@ export default {
   padding-left: 0;
 }
 
+.in-table__td--selector,
+.in-table__th--selector {
+  width: $checkbox-size;
+}
+
+.in-table__td--selector .in-toggle,
+.in-table__th--selector .in-toggle {
+  --c-focus: transparent;
+}
+
+.in-table__td--selector .in-toggle {
+  vertical-align: top;
+  pointer-events: none; // is handled by row
+}
+
+.in-table__th--selector .in-toggle {
+  vertical-align: bottom;
+}
+
 .in-table__td .in-form-control,
-.in-table__td .in-dropdown {
+.in-table__td .in-dropdown,
+.in-table__td .in-toggle {
   margin-top: calc(var(--s-bezel-y) * -1);
   margin-bottom: calc(var(--s-bezel-y) * -1);
 }

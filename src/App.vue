@@ -200,9 +200,26 @@
               v-on:rowClick="onRowSelect">
             </in-table>
           </div>
+
+          <div>
+            <h2 class="in-title in-title--section">Multiselection Table</h2>
+            <in-table 
+              v-bind:options="{
+                rowClickable: true,
+                multiSelection: true,
+              }"
+              v-bind:columns="[
+                { title: 'Name', key: 'name', sortable: true, gridCells: 4, width: '25rem' },
+                { title: 'Phone', key: 'phone', sortable: true },
+                { title: 'State', key: 'state', sortable: false, renderer: { name: 'DurationFormatter', component: renderer}, width: '6rem' },
+              ]"
+              v-bind:data="tableData"
+              v-on:rowClick="onMultiRowSelect">
+            </in-table>
+          </div>
         </div>
       </main>
-      <div class="in-page__end">
+      <div class="in-page__end in-stack in-stack--dragonfly">
         Footer Area
       </div>
     </div>
@@ -326,6 +343,9 @@ export default {
     },
     onRowSelect(row) {
       this.selectedRow = row === this.selectedRow ? undefined : row;
+    },
+    onMultiRowSelect(rows) {
+      console.log(rows);
     }
   }
 }
