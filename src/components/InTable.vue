@@ -48,7 +48,7 @@
           v-bind:key="`tr-${rowIndex}`"
         >
           <td class="in-table__td in-table__td--selector" v-if="tableOptions.multiSelection">
-            <in-toggle v-bind:value="row" v-model="selectedRows" v-on:click="onRowSelect(row, $event)" />
+            <in-toggle v-bind:value="row" v-on:click="onRowSelect(row, $event)" />
           </td>
           <td
             class="in-table__td"
