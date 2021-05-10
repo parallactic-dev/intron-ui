@@ -46,10 +46,9 @@
           v-bind:class="{'in-table__tr--highlighted': highlightedRow === row}"
           v-for="(row, rowIndex) in sortedTableData"
           v-bind:key="`tr-${rowIndex}`"
-          v-on:click="onRowClick(row)"
         >
           <td class="in-table__td in-table__td--selector" v-if="tableOptions.multiSelection">
-            <in-toggle v-bind:value="row" v-model="selectedRows" />
+            <in-toggle v-bind:value="row" v-model="selectedRows" v-on:click="onRowSelect(row, $event)" />
           </td>
           <td
             class="in-table__td"
@@ -59,6 +58,7 @@
             v-bind:style="{
               width: column.width ? column.width : null,
             }"
+            v-on:click="onRowClick(row)"
           >
             <component
               v-bind:is="column.renderer.name"
@@ -145,21 +145,21 @@ export default {
     },
     onRowClick(row) {
       if (!this.tableOptions.rowClickable) return;
-      if (this.tableOptions.multiSelection) {
-        const index = this.selectedRows.indexOf(row);
-        index > -1 
-          ? this.selectedRows.splice(index, 1) 
-          : this.selectedRows.push(row);
-        this.$emit('rowClick', this.selectedRows);
-      } else {
-        this.$emit('rowClick', row);
-      }
+      this.$emit('rowClick', row);
+    },
+    onRowSelect(row, event) {
+      event.stopPropagation();
+      const index = this.selectedRows.indexOf(row);
+      index > -1 
+        ? this.selectedRows.splice(index, 1) 
+        : this.selectedRows.push(row);
+      this.$emit('rowSelect', this.selectedRows);
     },
     handleSelectAllRows() {
       this.tableData.length === this.selectedRows.length
         ? this.selectedRows = []
         : this.selectedRows = [...this.tableData];
-      this.$emit('rowClick', this.selectedRows);
+      this.$emit('rowSelect', this.selectedRows);
     }
   },
   computed: {
@@ -299,7 +299,7 @@ export default {
 
 .in-table__td--selector .in-toggle {
   vertical-align: top;
-  pointer-events: none; // is handled by row
+  // pointer-events: none; // is handled by row
 }
 
 .in-table__th--selector .in-toggle {

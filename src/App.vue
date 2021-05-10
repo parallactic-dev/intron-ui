@@ -222,7 +222,8 @@
                 { title: 'State', key: 'state', sortable: false, renderer: { name: 'DurationFormatter', component: renderer}, width: '6rem' },
               ]"
               v-bind:data="tableData"
-              v-on:rowClick="onMultiRowSelect">
+              v-on:rowClick="onRowClick"
+              v-on:rowSelect="onMultiRowSelect">
             </in-table>
           </div>
         </div>
@@ -352,8 +353,11 @@ export default {
     onRowSelect(row) {
       this.selectedRow = row === this.selectedRow ? undefined : row;
     },
+    onRowClick(row) {
+      console.log('onRowClick', row)
+    },
     onMultiRowSelect(rows) {
-      console.log(rows);
+      console.log('onRowSelect', rows);
     }
   }
 }
