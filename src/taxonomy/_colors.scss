@@ -2,8 +2,8 @@
 $mood-indigo: #343749;
 $bombay: #B4B5BB;
 $paper-white: #FFFFFF;
-$placebo-turquoise: #E8FFF5;
-$peppermint-frosting: #BEFFE3;
+$corn-field: #F7FBCA;
+$banana-mash: #F3FF75;
 $fairy-princess: #F7DDDD;
 $infrared-tang: #DD1F47;
 
@@ -15,17 +15,17 @@ $text-inverted: $paper-white !default;
 $button-default: $mood-indigo !default;
 $button-hover: $mood-indigo !default;
 $button-background: transparent !default;
-$button-hover-background: $peppermint-frosting !default;
+$button-hover-background: $banana-mash !default;
 $button-inverted: $paper-white !default;
 $button-inverted-hover: $mood-indigo !default;
 $button-inverted-background: $mood-indigo !default;
-$button-inverted-hover-background: $peppermint-frosting !default;
+$button-inverted-hover-background: $banana-mash !default;
 $button-disabled: $bombay !default;
 
 $interaction-default: $mood-indigo !default;
 $interaction-hover: $mood-indigo !default;
-$interaction-hover-background: $peppermint-frosting !default;
-$interaction-focus: $peppermint-frosting !default;
+$interaction-hover-background: $banana-mash !default;
+$interaction-focus: $banana-mash !default;
 $interaction-focus-error: $fairy-princess !default;
 
 $input-border: $mood-indigo !default;
@@ -34,10 +34,9 @@ $input-error: $infrared-tang !default;
 
 $dropdown-background: $paper-white !default;
 
-
 $table-border: $mood-indigo !default;
 $table-background: transparent !default;
-$table-background-hover: $placebo-turquoise !default;
-$table-background-focus: $peppermint-frosting !default;
+$table-background-hover: $corn-field !default;
+$table-background-focus: $banana-mash !default;
 
 $spinner: $mood-indigo !default;
