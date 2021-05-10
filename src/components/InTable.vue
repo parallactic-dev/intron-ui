@@ -63,6 +63,7 @@
             <component
               v-bind:is="column.renderer.name"
               v-bind:value="getCellValue(column.key, row)"
+              v-bind:row="row"
               v-if="column.renderer"
             />
             <span v-else>{{ getCellValue(column.key, row) }}</span>
