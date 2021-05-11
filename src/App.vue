@@ -215,6 +215,7 @@
               v-bind:options="{
                 rowClickable: true,
                 multiSelection: true,
+                individualRowClassKey: 'name'
               }"
               v-bind:columns="[
                 { title: 'Name', key: 'name', sortable: true, gridCells: 4, width: '25rem' },
@@ -275,8 +276,8 @@ export default {
       radioModel: undefined,
       autocompleteModel: undefined,
       tableData: [
-        {name: 'Hans Wugger', phone: '079 569 31 48', state: 'open'},
-        {name: 'James Morris', phone: '044 515 20 55', state: 'billed'},
+        {name: 'Han\'s Wugger', phone: '079 569 31 48', state: 'open'},
+        {name: 'James Mörris!', phone: '044 515 20 55', state: 'billed'},
         {name: 'Hannah Tunnel', phone: '–', state: 'open'}
       ],
       selectedRow: undefined,

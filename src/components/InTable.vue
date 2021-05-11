@@ -9,8 +9,14 @@
       }"
     >
       <thead class="in-table__thead" v-if="tableOptions.showHeader">
-        <th class="in-table__th in-table__th--selector" v-if="tableOptions.multiSelection">
-          <in-toggle v-on:change="handleSelectAllRows" v-model="allRowsSelected" />
+        <th
+          class="in-table__th in-table__th--selector"
+          v-if="tableOptions.multiSelection"
+        >
+          <in-toggle
+            v-on:change="handleSelectAllRows"
+            v-model="allRowsSelected"
+          />
         </th>
         <th
           class="in-table__th"
@@ -43,12 +49,18 @@
       <tbody class="in-table__tbody">
         <tr
           class="in-table__tr"
-          v-bind:class="{'in-table__tr--highlighted': highlightedRow === row}"
+          v-bind:class="getRowClasses(row, rowIndex)"
           v-for="(row, rowIndex) in sortedTableData"
           v-bind:key="`tr-${rowIndex}`"
         >
-          <td class="in-table__td in-table__td--selector" v-if="tableOptions.multiSelection">
-            <in-toggle v-bind:value="row" v-on:click="onRowSelect(row, $event)" />
+          <td
+            class="in-table__td in-table__td--selector"
+            v-if="tableOptions.multiSelection"
+          >
+            <in-toggle
+              v-bind:value="row"
+              v-on:click="onRowSelect(row, $event)"
+            />
           </td>
           <td
             class="in-table__td"
@@ -75,7 +87,8 @@
 </template>
 
 <script>
-import InToggle from '@/components/InToggle';
+import getSafeCssClassName from '@/util/safeCssClassName';
+import InToggle from "@/components/InToggle";
 
 export default {
   name: "InTable",
@@ -103,7 +116,7 @@ export default {
     return {
       tableData: [],
       tableOptions: null,
-      selectedRows: [],
+      selectedRows: []
     };
   },
   created() {
@@ -115,15 +128,17 @@ export default {
       hoverEffect: true,
       rowClickable: false,
       multiSelection: false,
+      individualRowClassKey: null
     };
     this.tableOptions = Object.assign({}, defaultOptions, this.options);
 
     // load render components
     this.columns.forEach(column => {
       if (column.renderer) {
-        this.$options.components[column.renderer.name] = column.renderer.component;
+        this.$options.components[column.renderer.name] =
+          column.renderer.component;
       }
-    })
+    });
   },
   mounted() {
     this.tableData = this.data;
@@ -133,6 +148,18 @@ export default {
       return key.split(".").reduce(function(prev, curr) {
         return prev ? prev[curr] : null;
       }, rowData || self);
+    },
+    getRowClasses(row, index) {
+      const classes = [];
+      if (this.highlightedRow === row || this.highlightedRow == index) {
+        classes.push('in-table__tr--highlighted');
+      }
+      if (this.options.individualRowClassKey 
+        && row[this.options.individualRowClassKey]) {
+        const className = row[this.options.individualRowClassKey];
+        classes.push(`in-table__tr--${getSafeCssClassName(className)}`);
+      }
+      return classes;
     },
     orderBy(key, event) {
       event.preventDefault();
@@ -146,21 +173,21 @@ export default {
     },
     onRowClick(row) {
       if (!this.tableOptions.rowClickable) return;
-      this.$emit('rowClick', row);
+      this.$emit("rowClick", row);
     },
     onRowSelect(row, event) {
       event.stopPropagation();
       const index = this.selectedRows.indexOf(row);
-      index > -1 
-        ? this.selectedRows.splice(index, 1) 
+      index > -1
+        ? this.selectedRows.splice(index, 1)
         : this.selectedRows.push(row);
-      this.$emit('rowSelect', this.selectedRows);
+      this.$emit("rowSelect", this.selectedRows);
     },
     handleSelectAllRows() {
       this.tableData.length === this.selectedRows.length
-        ? this.selectedRows = []
-        : this.selectedRows = [...this.tableData];
-      this.$emit('rowSelect', this.selectedRows);
+        ? (this.selectedRows = [])
+        : (this.selectedRows = [...this.tableData]);
+      this.$emit("rowSelect", this.selectedRows);
     }
   },
   computed: {
@@ -183,9 +210,9 @@ export default {
       get() {
         return this.tableData.length === this.selectedRows.length;
       },
-      set(value){
-        return value
-      } 
+      set(value) {
+        return value;
+      }
     }
   },
   watch: {
