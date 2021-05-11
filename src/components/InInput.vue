@@ -23,11 +23,11 @@ export default {
       default: 'text'
     },
     label: {
-      type: [Number, String],
+      type: String,
       default: undefined
     },
     value: {
-      type: String,
+      type: [Number, String],
       default: undefined
     },
     helpText: {
