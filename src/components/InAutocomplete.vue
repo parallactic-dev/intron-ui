@@ -65,7 +65,7 @@ export default {
       default: result => result,
     },
     modelValue: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
     debounceTime: {
