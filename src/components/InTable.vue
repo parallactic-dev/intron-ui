@@ -59,6 +59,7 @@
           >
             <in-toggle
               v-bind:value="row"
+              v-bind:modelValue="selectedRows"
               v-on:click="onRowSelect(row, $event)"
             />
           </td>
@@ -208,7 +209,8 @@ export default {
     },
     allRowsSelected: {
       get() {
-        return this.tableData.length === this.selectedRows.length;
+        return this.selectedRows.length > 0 
+          && this.tableData.length === this.selectedRows.length;
       },
       set(value) {
         return value;

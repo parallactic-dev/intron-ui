@@ -56,7 +56,7 @@ export default {
         if (this.modelValue instanceof Array) {
           return this.modelValue.includes(this.value)
         }
-        return this.modelValue === this.trueValue
+        return JSON.stringify(this.modelValue) === JSON.stringify(this.trueValue);
       } else {
         return this.modelValue == this.value;
       }
