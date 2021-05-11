@@ -237,7 +237,9 @@ export default {
       this.core.handleInput(event)
     },
     handleKeyDown(event) {
-      event.stopPropagation();
+      if (event.key === 'Enter') {
+        event.preventDefault();
+      }
       this.core.handleKeyDown(event);
     },
     handleSubmit(selectedResult) {

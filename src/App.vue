@@ -96,7 +96,7 @@
             <div class="in-stack in-stack--beetle">
               <h3 class="in-title in-title--small">Inline Form no Gap</h3>
               <form action="" class="in-form in-form--inline in-form--no-gap">
-                <in-input type="text" placeholder="Full Name" />
+                <in-autocomplete placeholder="Country" icon="settings" v-bind:search="search" />
                 <in-input type="text" placeholder="E-Mail" />
                 <in-input type="date" placeholder="Date of Birth" />
                 <in-button icon="settings" v-bind:iconOnly="true"></in-button>
