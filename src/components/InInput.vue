@@ -23,7 +23,7 @@ export default {
       default: 'text'
     },
     label: {
-      type: String,
+      type: [Number, String],
       default: undefined
     },
     value: {
