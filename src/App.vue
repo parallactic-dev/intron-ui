@@ -215,7 +215,8 @@
               v-bind:options="{
                 rowClickable: true,
                 multiSelection: true,
-                individualRowClassKey: 'name'
+                individualRowClassKey: 'name',
+                showHeader: false
               }"
               v-bind:columns="[
                 { title: 'Name', key: 'name', sortable: true, gridCells: 4, width: '25rem' },
