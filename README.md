@@ -1,9 +1,9 @@
-# Insecta UI
-Insecta UI is a small UI system based on vuejs.
+# Intron UI
+Intron UI is a small UI system based on vuejs.
 
 ## Installation
 ```
-npm install @parallactic/insecta --save
+npm install @parallactic/intron-ui --save
 ```
 
 ## Development

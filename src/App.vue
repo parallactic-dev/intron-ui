@@ -4,7 +4,7 @@
       <div class="in-page__start"></div>
       <main class="in-page__main">
         <div class="in-container">
-
+          <h1 class="in-title in-title--page">Intron UI</h1>
           <div>
             <h2 class="in-title">Icons</h2>
             <in-icon name="settings" size="s" />

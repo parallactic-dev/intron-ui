@@ -1,16 +1,16 @@
 {
-  "name": "@parallactic/insecta",
-  "version": "0.4.6",
+  "name": "@parallactic/intron-ui",
+  "version": "1.0.0",
   "private": false,
   "license": "MIT",
-  "main": "dist/insecta.common.js",
+  "main": "dist/intron.common.js",
   "files": [
     "dist/*",
     "src/taxonomy/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name insecta src/Library.vue",
+    "build": "vue-cli-service build --target lib --name intron src/Library.vue",
     "lint": "vue-cli-service lint",
     "icons": "node icons/generate-icon-sprite.js"
   },
