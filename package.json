@@ -1,6 +1,6 @@
 {
   "name": "@parallactic/intron-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "license": "MIT",
   "main": "dist/intron.common.js",
