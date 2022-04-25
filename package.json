@@ -6,7 +6,7 @@
   "main": "dist/intron.common.js",
   "files": [
     "dist/*",
-    "src/taxonomy/*"
+    "src/tokens/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
