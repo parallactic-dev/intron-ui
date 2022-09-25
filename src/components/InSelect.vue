@@ -97,7 +97,7 @@ export default {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  padding: calc(var(--s-bezel-y) - var(--s-border)) var(--s-bezel-x);
+  padding: calc(var(--s-bezel-y) - var(--s-border)) calc(var(--s-bezel-x) * 3) calc(var(--s-bezel-y) - var(--s-border)) var(--s-bezel-x);
   border: var(--s-border) solid var(--c-border);
   background-color: var(--c-background);
   // remove select arrow
