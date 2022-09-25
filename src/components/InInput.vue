@@ -137,7 +137,7 @@ export default {
   z-index: 1;
 }
 
-.in-input__input::-webkit-calendar-picker-indicator {
+.in-input.in-input--icon .in-input__input::-webkit-calendar-picker-indicator {
   display: none; // hide datepicker icon
 }
 </style>
